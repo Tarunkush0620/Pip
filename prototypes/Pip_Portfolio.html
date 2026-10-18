@@ -1,0 +1,462 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Pip’s Portfolio · Junior Dream Engineer</title>
+<link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;600;700&family=Outfit:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+:root{--cream:#FFF6EF;--blush:#FBDCE6;--berry:#FF75A0;--plum:#E2B6DE;--deep:#160822;--lav:#CDB8E3;--moon:#FCE183;--ink:#FFF0E6;--p:0;--mx:0;--my:0}
+*{box-sizing:border-box;margin:0}
+html{scroll-behavior:smooth;background:#140722;scrollbar-width:none;-ms-overflow-style:none}
+body{font-family:Outfit,system-ui,sans-serif;color:var(--ink);background:transparent;overflow-x:hidden;min-height:100vh;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px);scrollbar-width:none;-ms-overflow-style:none}
+::-webkit-scrollbar{display:none!important;width:0!important;height:0!important}
+html.intro-active,body.intro-active{overflow:hidden!important;height:100vh!important;touch-action:none!important}
+h1,h2,h3,.f{font-family:Fredoka,Outfit,sans-serif;color:var(--berry);font-weight:600;text-shadow:0 2px 10px rgba(0,0,0,0.6)}
+img{max-width:100%;display:block}
+
+/* Animated Dream Sky Dual Video Background (Dawn ☀️ & Midnight 🌌) */
+#video-sky-container{position:fixed;inset:0;width:100vw;height:100vh;z-index:-1;pointer-events:none;overflow:hidden;background:transparent}
+.bg-vid{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center;transition:opacity 1.1s cubic-bezier(0.2,0.9,0.3,1),filter 1.1s ease;pointer-events:none}
+#bg-video-dawn{opacity:1;filter:brightness(1.08) saturate(1.18) contrast(1.02)}
+#bg-video-midnight{opacity:0;filter:brightness(1.15) saturate(1.22) contrast(1.03)}
+body.sky-dawn #bg-video-dawn{opacity:1!important}
+body.sky-dawn #bg-video-midnight{opacity:0!important}
+body.sky-midnight #bg-video-dawn{opacity:0!important}
+body.sky-midnight #bg-video-midnight{opacity:1!important}
+#video-sky-overlay{position:absolute;inset:0;pointer-events:none;background:radial-gradient(circle at 50% 35%,rgba(255,240,248,0.02) 0%,rgba(35,14,50,0.08) 100%)}
+.hero-moon-deco,.hero-cloud{display:none!important}
+#stars{position:fixed;inset:0;z-index:15;pointer-events:none;opacity:0}
+#stars i{position:absolute;width:5px;height:5px;background:var(--moon);clip-path:polygon(50% 0,62% 38%,100% 50%,62% 62%,50% 100%,38% 62%,0 50%,38% 38%);animation:tw 3s ease-in-out infinite}
+@keyframes tw{50%{opacity:.2;transform:scale(.5)}}
+@keyframes sway{0%{transform:rotate(-6deg)}100%{transform:rotate(6deg)}}
+section{position:relative}
+
+/* hero */
+.hero{min-height:100vh;display:grid;grid-template-columns:1.2fr 1fr;align-items:center;gap:2rem;padding:6vh 7vw;background:transparent;overflow:hidden;position:relative}
+.hero::before{content:'';position:absolute;top:-50%;left:-50%;width:200%;height:200%;background:radial-gradient(circle at calc(50% + var(--mx)*30%) calc(50% + var(--my)*30%),rgba(244,215,123,.08) 0,transparent 35%);pointer-events:none;transition:background .3s}
+.hero::after{display:none}
+.hero-decor{position:absolute;pointer-events:none;z-index:1}
+.hero-cloud{position:absolute;border-radius:50%;background:rgba(255,255,255,.3);filter:blur(30px);animation:cloud-drift 20s ease-in-out infinite}
+.hero-cloud:nth-child(1){width:300px;height:100px;top:10%;left:-5%;animation-delay:0s}
+.hero-cloud:nth-child(2){width:200px;height:70px;top:25%;right:5%;animation-delay:-7s;animation-duration:25s}
+.hero-cloud:nth-child(3){width:250px;height:80px;bottom:20%;left:10%;animation-delay:-14s;animation-duration:22s}
+@keyframes cloud-drift{0%,100%{transform:translateX(0) translateY(0)}25%{transform:translateX(30px) translateY(-10px)}50%{transform:translateX(-20px) translateY(5px)}75%{transform:translateX(15px) translateY(-8px)}}
+.hero-sparkle{position:absolute;width:6px;height:6px;background:var(--moon);border-radius:50%;animation:sparkle 3s ease-in-out infinite;box-shadow:0 0 8px rgba(244,215,123,.6)}
+@keyframes sparkle{0%,100%{opacity:0;transform:scale(0) rotate(0deg)}50%{opacity:1;transform:scale(1) rotate(180deg)}}
+
+.hero-moon-deco{position:absolute;top:6%;right:8%;width:clamp(60px,8vw,100px);height:clamp(60px,8vw,100px);border-radius:50%;background:var(--moon);box-shadow:inset -18px -8px 0 #e9c35a,0 0 60px rgba(244,215,123,.4),0 0 120px rgba(244,215,123,.15);animation:moon-glow 4s ease-in-out infinite;z-index:1}
+@keyframes moon-glow{0%,100%{box-shadow:inset -18px -8px 0 #e9c35a,0 0 60px rgba(244,215,123,.4),0 0 120px rgba(244,215,123,.15)}50%{box-shadow:inset -18px -8px 0 #e9c35a,0 0 80px rgba(244,215,123,.55),0 0 160px rgba(244,215,123,.25)}}
+.hero-content{position:relative;z-index:3}
+.hero-badge{display:inline-flex;align-items:center;gap:.5rem;background:rgba(255,255,255,.12);border:1.5px solid rgba(255,255,255,.2);backdrop-filter:blur(8px);border-radius:99px;padding:.45rem 1.2rem .45rem .8rem;font:500 .85rem Fredoka;color:var(--moon);margin-bottom:1.8rem;animation:badge-in .8s .6s cubic-bezier(.3,1.5,.5,1) both}
+.hero-badge .dot{width:8px;height:8px;border-radius:50%;background:var(--moon);animation:pulse-dot 2s ease-in-out infinite}
+@keyframes pulse-dot{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.5;transform:scale(.6)}}
+@keyframes badge-in{from{opacity:0;transform:translateY(-20px) scale(.9)}}
+.big{font-size:clamp(7rem,24vw,22rem);line-height:.82;letter-spacing:-.04em;display:flex;margin-left:-.04em;position:relative}
+.big span{display:inline-block;animation:drop 1.1s cubic-bezier(.3,1.5,.5,1) both;transform:translateY(calc(var(--py,0)*-1px));text-shadow:0 4px 30px rgba(255,117,160,.4);transition:text-shadow .3s,color .3s}
+.big span:hover{text-shadow:0 4px 40px rgba(255,117,160,.6),0 0 80px rgba(252,225,131,.5);cursor:default}
+.big span:nth-child(1){color:#fff}
+.big span:nth-child(2){animation-delay:.15s;color:var(--lav)}
+.big span:nth-child(3){animation-delay:.3s;color:#fff}
+@keyframes drop{from{opacity:0;translate:0 -70vh;rotate:-12deg}}
+.role{font-size:clamp(1.15rem,2.2vw,1.7rem);margin-top:1.6rem;font-weight:400;max-width:28ch;animation:fade-up .8s .4s ease both;line-height:1.4;color:#fff;text-shadow:0 2px 10px rgba(0,0,0,0.6)}
+.role .role-highlight{color:var(--berry);font-weight:600;position:relative}
+.role .role-highlight::after{content:'';position:absolute;bottom:-2px;left:0;right:0;height:3px;background:linear-gradient(90deg,var(--moon),var(--blush));border-radius:2px;transform:scaleX(0);animation:underline-in .6s .9s ease both}
+@keyframes underline-in{to{transform:scaleX(1)}}
+.quote{font-style:italic;font-weight:300;margin-top:1rem;opacity:0;animation:fade-up .8s .7s ease both;font-size:clamp(1rem,1.5vw,1.15rem);color:var(--cream);text-shadow:0 2px 8px rgba(0,0,0,0.5)}
+@keyframes fade-up{from{opacity:0;transform:translateY(25px)}}
+.cue{display:inline-flex;gap:.7rem;align-items:center;margin-top:2.4rem;color:#fff;text-decoration:none;font:600 1rem Fredoka;background:linear-gradient(135deg,var(--berry),#8E3A6A);padding:.9rem 1.8rem;border-radius:99px;box-shadow:0 8px 25px rgba(255,117,160,.35);transition:all .3s;animation:fade-up .8s 1s ease both;position:relative;overflow:hidden}
+.cue::before{content:'';position:absolute;inset:0;background:linear-gradient(135deg,rgba(255,255,255,.15),transparent);opacity:0;transition:opacity .3s}
+.cue:hover{transform:translateY(-3px) scale(1.03);box-shadow:0 14px 35px rgba(255,117,160,.45)}
+.cue:hover::before{opacity:1}
+.cue b{width:22px;height:22px;border-radius:50%;background:var(--moon);box-shadow:inset -6px -2px 0 #e9c35c;animation:bob 1.6s ease-in-out infinite}
+@keyframes bob{50%{translate:0 8px}}
+.arch{justify-self:center;width:min(380px,80%);border-radius:999px 999px 36px 36px;overflow:hidden;border:6px solid rgba(255,255,255,.9);box-shadow:0 30px 70px -20px rgba(0,0,0,.6),0 0 100px rgba(205,184,227,.2);animation:fl 6s ease-in-out infinite;transform:translate(calc(var(--mx)*18px),calc(var(--my)*14px));position:relative;z-index:3}
+.arch::before{content:'';position:absolute;inset:-4px;border-radius:inherit;background:linear-gradient(135deg,var(--blush),var(--lav),var(--moon));z-index:-1;animation:border-rotate 8s linear infinite}
+@keyframes border-rotate{0%{filter:hue-rotate(0deg)}100%{filter:hue-rotate(360deg)}}
+.arch img{width:100%;aspect-ratio:896/1090;object-fit:cover}
+@keyframes fl{50%{translate:0 -16px}}
+.hero-stats{display:flex;gap:2rem;margin-top:2.5rem;animation:fade-up .8s 1.2s ease both}
+.hero-stat{text-align:center}
+.hero-stat .stat-num{font:700 1.6rem Fredoka;color:var(--moon);display:block;text-shadow:0 2px 8px rgba(0,0,0,0.5)}
+.hero-stat .stat-label{font-size:.78rem;color:var(--cream);opacity:.8;margin-top:.15rem}
+
+/* marquee */
+.mq{background:rgba(255,117,160,0.85);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);color:var(--cream);overflow:hidden;white-space:nowrap;padding:1rem 0;rotate:-1.5deg;margin:-1rem -2rem 0;position:relative;z-index:3}
+.mq div{display:inline-block;font:600 clamp(1.4rem,3vw,2.4rem) Fredoka;will-change:transform}
+
+/* about */
+.about{padding:20vh 7vw 14vh;background:rgba(20,8,32,0.45);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);display:grid;grid-template-columns:1fr 1.5fr;gap:6vw;align-items:start}
+.card{position:sticky;top:12vh;border-radius:30px;background:rgba(28,12,42,0.85);backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);border:2px solid rgba(255,255,255,0.25);padding:12px;box-shadow:0 30px 60px -25px rgba(0,0,0,0.6);transform:rotate(calc(var(--r,0)*1deg));transition:transform .2s}
+.card img{border-radius:20px}
+.card p{font:600 1.1rem Fredoka;text-align:center;padding:.8rem 0 .3rem;color:var(--moon)}
+.stmt{font:500 clamp(1.7rem,3.6vw,3.2rem)/1.25 Fredoka;color:#fff;text-shadow:0 2px 14px rgba(0,0,0,0.7)}
+.stmt span{opacity:.55;color:rgba(255,240,248,.7);transition:opacity .25s,color .25s}
+.stmt span.on{opacity:1;color:var(--moon);text-shadow:0 0 16px rgba(254,225,131,.9),0 2px 8px rgba(0,0,0,.8)}
+.traits{display:flex;flex-wrap:wrap;gap:.7rem;margin-top:2.4rem}
+.traits li{list-style:none;background:rgba(255,255,255,.15);color:var(--ink);border:1px solid rgba(255,255,255,.25);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);border-radius:99px;padding:.6rem 1.1rem;font-size:1rem}
+
+/* showcase */
+.hs{height:480vh;background:rgba(20,8,32,0.4);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px)}
+.sticky{position:sticky;top:0;height:100vh;overflow:hidden;display:flex;flex-direction:column;justify-content:center;gap:2.4vh}
+.sticky>h2{font-size:clamp(2rem,5vw,4rem);padding:0 7vw;color:#fff;text-shadow:0 2px 14px rgba(0,0,0,0.7)}
+.sticky>p{padding:0 7vw;margin-top:-1.5vh;font-weight:300;color:var(--moon)}
+.track{display:flex;gap:4vw;padding:0 7vw;will-change:transform}
+.pn{flex:none;width:min(80vw,900px);height:62vh;border-radius:36px;background:rgba(28,12,42,0.88);backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);border:1px solid rgba(255,255,255,0.2);display:grid;grid-template-columns:1fr 1fr;overflow:hidden;box-shadow:0 40px 80px -30px rgba(0,0,0,0.7)}
+.vis{position:relative;display:grid;place-items:center;background:rgba(16,6,24,0.7);overflow:hidden}
+.vis img{height:100%;width:100%;object-fit:cover}
+.tx{padding:clamp(1.2rem,3vw,2.6rem);display:flex;flex-direction:column;justify-content:center;gap:.9rem}
+.tx h3{font-size:clamp(1.5rem,2.8vw,2.4rem);line-height:1.1;color:#fff;text-shadow:0 2px 10px rgba(0,0,0,0.5)}
+.tx p{color:var(--cream)}
+.tag{font-size:.9rem;color:var(--moon)}
+.btn{align-self:flex-start;border:0;border-radius:99px;padding:.8rem 1.4rem;font:600 1rem Fredoka;background:var(--berry);color:#fff;cursor:pointer;transition:transform .2s,background .2s;box-shadow:0 4px 15px rgba(255,117,160,0.4)}
+.btn:hover{transform:scale(1.06)}.btn:active{transform:scale(.96)}
+:focus-visible{outline:3px solid var(--moon);outline-offset:3px}
+.note{position:absolute;font-size:2rem;color:var(--moon);opacity:0;pointer-events:none}
+.play .note{animation:nt 2.4s ease-out infinite}.note:nth-of-type(2){left:30%;animation-delay:.8s!important}.note:nth-of-type(3){left:68%;animation-delay:1.6s!important}
+@keyframes nt{0%{opacity:0;bottom:30%}20%{opacity:1}100%{opacity:0;bottom:85%}}
+.play .vis img{animation:wig 1.2s ease-in-out infinite}
+@keyframes wig{50%{scale:1.05;rotate:1.5deg}}
+.lit .vis img{filter:brightness(.5) saturate(1.3)}
+.vis .glow{position:absolute;inset:0;background:radial-gradient(circle at 50% 52%,rgba(255,214,120,.95),transparent 42%);mix-blend-mode:screen;opacity:0;transition:opacity .6s}
+.lit .glow{opacity:1}.lit .vis{background:#2F1634}
+.map{background:#2F1634;padding:0}.map svg{width:100%;height:100%}
+.blocks{background:rgba(20,8,30,0.6);display:flex;flex-direction:column-reverse;align-items:center;justify-content:flex-start;padding:1rem;gap:3px;overflow:hidden}
+.blk{width:84px;height:46px;border-radius:12px;display:grid;place-items:center;font:700 1.4rem Fredoka;color:#fff;animation:land .5s cubic-bezier(.3,1.6,.5,1) both;cursor:pointer}
+@keyframes land{from{translate:0 -300px;opacity:0}}
+
+/* growth */
+.grow{padding:18vh 7vw;background:rgba(20,8,32,0.55);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);color:var(--cream)}
+.grow h2{color:var(--moon);font-size:clamp(2rem,5vw,4rem);text-shadow:0 2px 12px rgba(0,0,0,0.6)}
+.wall{margin-top:3rem;max-width:860px;border-left:6px solid var(--moon);padding-left:2rem;display:grid;gap:1.6rem}
+.row label{font:500 1.2rem Fredoka;display:flex;justify-content:space-between;color:var(--cream)}
+.bar{height:20px;border-radius:99px;background:rgba(255,255,255,.15);margin-top:.5rem;overflow:hidden}
+.bar i{display:block;height:100%;width:0;border-radius:99px;background:linear-gradient(90deg,var(--blush),var(--moon));transition:width 1.6s cubic-bezier(.2,.8,.2,1)}
+
+/* footer */
+.end{min-height:90vh;display:grid;place-items:center;text-align:center;padding:12vh 7vw;background:rgba(14,4,22,0.75);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);color:var(--cream);position:relative;overflow:hidden}
+.end h2{font-size:clamp(3rem,11vw,9rem);color:var(--cream);line-height:.95;text-shadow:0 4px 20px rgba(0,0,0,0.7)}
+.end p{margin:1.2rem 0 2rem;font-weight:300;font-size:1.2rem}
+.end .btn{background:var(--moon);color:var(--plum);text-decoration:none;display:inline-block}
+.moon{position:absolute;top:8%;right:10%;width:clamp(70px,12vw,150px);aspect-ratio:1;border-radius:50%;background:var(--moon);box-shadow:inset -22px -8px 0 #e6c25a,0 0 90px rgba(244,215,123,.5);animation:fl 7s ease-in-out infinite}
+
+@media(max-width:760px){
+  .hero,.about{grid-template-columns:1fr;padding:10vh 5vw 6vh}
+  .big{font-size:clamp(4.2rem,18vw,12rem)}
+  .card{position:static;max-width:340px;margin:0 auto}
+  .pn{width:calc(100vw - 2rem);height:75vh;max-height:560px;display:flex;flex-direction:column;overflow-y:auto;-webkit-overflow-scrolling:touch;border-radius:24px}
+  .vis{flex:none;height:160px;min-height:0}
+  .vis img{max-height:140px;object-fit:contain}
+  .arch{order:-1;width:65%;max-width:260px}
+  .tx{gap:.5rem;padding:1rem 1.2rem;flex:1}
+  .tx p{font-size:.92rem}
+  .hero-stats{gap:1.2rem;justify-content:center}
+}
+@media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}.hs{height:auto}.sticky{position:static;height:auto;padding:10vh 0}.track{overflow-x:auto;transform:none!important}.stmt span{opacity:1}}
+
+body.sky-dawn {
+  --ink: #2E1026;
+  --cream: #2E1026;
+}
+body.sky-dawn .role { color: #2E1026 !important; text-shadow: 0 1px 10px rgba(255,255,255,0.95); font-weight: 700; }
+body.sky-dawn .quote { color: #4D1A3E !important; text-shadow: 0 1px 8px rgba(255,255,255,0.9); font-weight: 500; }
+body.sky-dawn .hero-stat .stat-label { color: #3B152F !important; font-weight: 600; }
+body.sky-dawn .hero-stat .stat-num { color: #E62A6B !important; }
+body.sky-dawn .stmt { color: #2E1026 !important; text-shadow: 0 1px 8px rgba(255,255,255,0.9); }
+body.sky-dawn .stmt span { color: #38122C !important; opacity: 0.7; }
+body.sky-dawn .stmt span.on { color: #D81B60 !important; opacity: 1; font-weight: 700; text-shadow: 0 0 14px rgba(255,117,160,0.6); }
+body.sky-dawn .about { background: rgba(255,255,255,0.75) !important; }
+body.sky-dawn .card { background: rgba(255,255,255,0.9) !important; border-color: rgba(255,180,205,0.6) !important; box-shadow: 0 20px 45px rgba(180,80,120,0.12) !important; }
+body.sky-dawn .card p { color: #E62A6B !important; }
+body.sky-dawn .traits li { background: rgba(255,255,255,0.9) !important; color: #2E1026 !important; border-color: rgba(255,180,205,0.6) !important; font-weight: 600; }
+body.sky-dawn .sticky > h2 { color: #E62A6B !important; text-shadow: 0 1px 12px rgba(255,255,255,0.95); }
+body.sky-dawn .sticky > p { color: #3B152F !important; font-weight: 600; }
+body.sky-dawn .pn { background: rgba(255,255,255,0.92) !important; border-color: rgba(255,180,205,0.6) !important; }
+body.sky-dawn .tx h3 { color: #E62A6B !important; }
+body.sky-dawn .tx p { color: #3B152F !important; }
+body.sky-dawn .hero-badge { background: rgba(255,255,255,0.95) !important; border-color: rgba(255,117,160,0.4) !important; color: #E62A6B !important; font-weight: 700; box-shadow: 0 4px 14px rgba(0,0,0,0.06); }
+body.sky-dawn .hero-badge .dot { background: #E62A6B !important; }
+
+</style></head><body>
+
+<!-- Fullscreen Cinematic Edge-to-Edge Intro Video Overlay -->
+<div id="pip-intro-overlay" style="position:fixed;inset:0;z-index:999999;background:#000;overflow:hidden;transition:all 1.1s cubic-bezier(0.16,1,0.3,1);">
+  <video id="pip-intro-video" src="intro.mp4" playsinline webkit-playsinline preload="auto" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;cursor:pointer;"></video>
+  
+  <div style="position:absolute;inset:0;background:linear-gradient(to bottom,rgba(0,0,0,0.5) 0%,transparent 30%,transparent 70%,rgba(0,0,0,0.7) 100%);pointer-events:none;"></div>
+
+  <div id="intro-top-hud" style="position:absolute;top:max(16px,env(safe-area-inset-top,16px));left:16px;right:16px;display:flex;justify-content:space-between;align-items:center;z-index:20;pointer-events:none;transition:opacity 0.4s;gap:8px;">
+    <span style="background:rgba(0,0,0,0.65);border:1px solid rgba(255,255,255,0.2);padding:6px 14px;border-radius:99px;color:#fff;font:600 0.78rem Fredoka,sans-serif;backdrop-filter:blur(10px);pointer-events:auto;white-space:nowrap;">Prologue</span>
+    <button id="skip-intro-btn" style="background:rgba(255,255,255,0.22);border:1px solid rgba(255,255,255,0.35);padding:6px 14px;border-radius:99px;color:#fff;font:600 0.8rem Fredoka,sans-serif;cursor:pointer;pointer-events:auto;backdrop-filter:blur(10px);box-shadow:0 8px 25px rgba(0,0,0,0.3);white-space:nowrap;">Skip ↷</button>
+  </div>
+
+  <div id="intro-bottom-hud" style="position:absolute;bottom:max(18px,env(safe-area-inset-bottom,18px));right:16px;display:flex;justify-content:flex-end;align-items:center;z-index:20;pointer-events:none;transition:opacity 0.4s;">
+    <button id="enter-site-btn" style="background:linear-gradient(135deg,#E62A6B,#FF75A0);border:0;border-radius:99px;padding:9px 20px;color:#fff;font:600 0.88rem Fredoka,sans-serif;cursor:pointer;box-shadow:0 6px 20px rgba(230,42,107,0.5);pointer-events:auto;">Enter Pip’s Nursery ✨</button>
+  </div>
+</div>
+
+<!-- Animated Dream Sky Dual Video Background (Dawn ☀️ & Midnight 🌌) -->
+<div id="video-sky-container">
+  <video id="bg-video-dawn" class="bg-vid" src="Dawn.mp4" autoplay loop muted playsinline preload="auto">
+    <source src="Dawn.mp4" type="video/mp4">
+  </video>
+  <video id="bg-video-midnight" class="bg-vid" src="midnight.mp4" autoplay loop muted playsinline preload="auto">
+    <source src="midnight.mp4" type="video/mp4">
+  </video>
+  <div id="video-sky-overlay"></div>
+</div>
+
+<button id="sky-toggle-btn" style="position:fixed;top:16px;right:16px;z-index:999;border:0;border-radius:99px;padding:8px 18px;background:rgba(255,117,160,0.92);backdrop-filter:blur(10px);color:#fff;font:600 0.95rem Fredoka,sans-serif;cursor:pointer;box-shadow:0 6px 20px rgba(0,0,0,0.3);display:flex;align-items:center;gap:6px;transition:all .3s;">
+  <span id="sky-btn-icon">☀️</span> <span id="sky-btn-text">Dawn</span>
+</button>
+
+<div id="stars" aria-hidden="true" style="z-index:20;"></div>
+
+<section class="hero" id="top">
+  <!-- Whimsical Hanging Star Ornaments (From Video Background) -->
+  <div style="position:absolute;top:0;left:0;right:0;height:110px;pointer-events:none;z-index:10;display:flex;justify-content:space-around;padding:0 3vw;overflow:hidden;" aria-hidden="true">
+    <div style="display:flex;flex-direction:column;align-items:center;transform-origin:top center;animation:sway 4s ease-in-out infinite alternate;">
+      <div style="width:1.5px;height:55px;background:linear-gradient(to bottom,rgba(255,255,255,0.4),rgba(244,215,123,0.7));"></div>
+      <div style="color:#FFB4CB;font-size:1.3rem;text-shadow:0 0 10px #FFB4CB;">★</div>
+    </div>
+    <div style="display:flex;flex-direction:column;align-items:center;transform-origin:top center;animation:sway 4.5s .8s ease-in-out infinite alternate;">
+      <div style="width:1.5px;height:85px;background:linear-gradient(to bottom,rgba(255,255,255,0.4),rgba(244,215,123,0.7));"></div>
+      <div style="color:#AEE4D6;font-size:1.3rem;text-shadow:0 0 10px #AEE4D6;">★</div>
+    </div>
+    <div style="display:flex;flex-direction:column;align-items:center;transform-origin:top center;animation:sway 5s 1.5s ease-in-out infinite alternate;">
+      <div style="width:1.5px;height:45px;background:linear-gradient(to bottom,rgba(255,255,255,0.4),rgba(244,215,123,0.7));"></div>
+      <div style="color:#D0B8F0;font-size:1.3rem;text-shadow:0 0 10px #D0B8F0;">★</div>
+    </div>
+    <div style="display:flex;flex-direction:column;align-items:center;transform-origin:top center;animation:sway 4.2s .3s ease-in-out infinite alternate;">
+      <div style="width:1.5px;height:75px;background:linear-gradient(to bottom,rgba(255,255,255,0.4),rgba(244,215,123,0.7));"></div>
+      <div style="color:#FFE58F;font-size:1.3rem;text-shadow:0 0 10px #FFE58F;">✦</div>
+    </div>
+    <div style="display:flex;flex-direction:column;align-items:center;transform-origin:top center;animation:sway 4.8s 1.1s ease-in-out infinite alternate;">
+      <div style="width:1.5px;height:60px;background:linear-gradient(to bottom,rgba(255,255,255,0.4),rgba(244,215,123,0.7));"></div>
+      <div style="color:#FFB4CB;font-size:1.3rem;text-shadow:0 0 10px #FFB4CB;">★</div>
+    </div>
+    <div style="display:flex;flex-direction:column;align-items:center;transform-origin:top center;animation:sway 5.2s .6s ease-in-out infinite alternate;">
+      <div style="width:1.5px;height:95px;background:linear-gradient(to bottom,rgba(255,255,255,0.4),rgba(244,215,123,0.7));"></div>
+      <div style="color:#D0B8F0;font-size:1.3rem;text-shadow:0 0 10px #D0B8F0;">✦</div>
+    </div>
+  </div>
+
+  <div class="hero-decor" aria-hidden="true">
+    <div class="hero-cloud"></div><div class="hero-cloud"></div><div class="hero-cloud"></div>
+    <div class="hero-sparkle" style="top:15%;left:12%;animation-delay:0s"></div>
+    <div class="hero-sparkle" style="top:35%;left:45%;animation-delay:.8s"></div>
+    <div class="hero-sparkle" style="top:60%;left:25%;animation-delay:1.6s"></div>
+    <div class="hero-sparkle" style="top:20%;right:26%;animation-delay:2.4s"></div>
+    <div class="hero-sparkle" style="top:70%;right:15%;animation-delay:.4s"></div>
+    <div class="hero-sparkle" style="top:45%;right:36%;animation-delay:1.2s"></div>
+  </div>
+  <div class="hero-moon-deco" aria-hidden="true"></div>
+
+  <div class="hero-content">
+    <div class="hero-badge"><span class="dot"></span> Midnight Nursery</div>
+    <h1 class="big" id="title" aria-label="Pip"><span>P</span><span>i</span><span>p</span></h1>
+    <p class="role">Junior <span class="role-highlight">Dream Engineer</span> at the Midnight Nursery</p>
+    <p class="quote">&ldquo;I build the dreams you fall asleep inside.&rdquo;</p>
+    <a class="cue" href="#about"><b></b>Follow Pip to bedtime</a>
+    <div class="hero-stats">
+      <div class="hero-stat"><span class="stat-num">42</span><span class="stat-label">Dreams crafted</span></div>
+      <div class="hero-stat"><span class="stat-num">7</span><span class="stat-label">Lullabies</span></div>
+      <div class="hero-stat"><span class="stat-num">&infin;</span><span class="stat-label">Giggles</span></div>
+    </div>
+  </div>
+
+  <div class="arch">
+    <img src="assests/8.jpg" alt="Pip holding a glowing lantern on a pink cloud" width="896" height="1090">
+  </div>
+</section>
+
+<div class="mq" aria-hidden="true"><div id="mq"></div></div>
+
+<section class="about" id="about">
+  <div class="card" id="card">
+    <img src="assests/1.jpg" alt="Pip smiling" width="896" height="1090">
+    <p>Pip</p>
+  </div>
+  <div>
+    <h2 style="font-size:clamp(2.4rem,5vw,4.5rem);margin-bottom:1.5rem;color:#fff;text-shadow:0 2px 14px rgba(0,0,0,0.7)">Who is Pip?</h2>
+    <p class="stmt" id="stmt">Pip is a curious, sleepy, a little clumsy baby with a smooth round skull face and huge glowing eyes. Pip designs the dreams, lullabies, nightlights and bedtime stories that help the neighbourhood’s little ghosts and creatures fall asleep. Pip giggles at everything and hates silence.</p>
+    <ul class="traits">
+      <li>🔍 Curious</li>
+      <li>💤 Sleepy</li>
+      <li>🧸 A little clumsy</li>
+      <li>🌸 Easily delighted</li>
+      <li>✨ Giggles at everything</li>
+      <li>🎵 Hates silence</li>
+    </ul>
+  </div>
+</section>
+
+<section class="hs" id="work">
+  <div class="sticky">
+    <h2>Pip’s inventions</h2>
+    <p>Scroll down — the gallery rolls sideways.</p>
+    <div class="track" id="track">
+
+      <article class="pn" id="p1">
+        <div class="vis"><img src="assests/2.jpg" alt="Unicorn music box"><span class="note">♪</span><span class="note">♫</span><span class="note">♬</span></div>
+        <div class="tx"><h3>The Unicorn Music Box</h3><p>Winds up and plays a five-note lullaby that loops until the eyelids get heavy.</p><span class="tag">Sound design</span><button class="btn" id="mb" aria-pressed="false">Wind the music box</button></div>
+      </article>
+
+      <article class="pn" id="p2">
+        <div class="vis"><div class="glow"></div><img src="assests/3.jpg" alt="Star lantern"></div>
+        <div class="tx"><h3>Little Star Lantern</h3><p>Keeps the monsters under the bed polite and sleepy. Click to light.</p><span class="tag">Lighting</span><button class="btn" id="lt" aria-pressed="false">Light the lantern</button></div>
+      </article>
+
+      <article class="pn">
+        <div class="vis map"><svg viewBox="0 0 600 600" width="100%" height="100%"><circle cx="300" cy="300" r="220" fill="none" stroke="#A23A62" stroke-width="3" opacity=".2"/><circle cx="300" cy="300" r="140" fill="none" stroke="#A23A62" stroke-width="2" opacity=".3"/><circle cx="300" cy="300" r="60" fill="none" stroke="#A23A62" stroke-width="2" opacity=".4"/><line x1="300" y1="50" x2="300" y2="550" stroke="#A23A62" stroke-width="1.5" opacity=".2"/><line x1="50" y1="300" x2="550" y2="300" stroke="#A23A62" stroke-width="1.5" opacity=".2"/><g transform="translate(300 300)"><circle cx="0" cy="0" r="8" fill="#F4D77B"/><circle cx="0" cy="0" r="25" fill="#F4D77B" opacity=".3"><animate attributeName="r" values="8;40;8" dur="3s" repeatCount="indefinite"/><animate attributeName="opacity" values=".6;0;.6" dur="3s" repeatCount="indefinite"/></circle><text x="18" y="6" font-family="Fredoka" font-size="16" fill="#FBDCE6">Pip's crib</text><g transform="translate(100 -60)"><circle cx="0" cy="0" r="6" fill="#A23A62"/><text x="12" y="5" font-family="Fredoka" font-size="14" fill="#FBDCE6">Teddy ridge</text></g><g transform="translate(-80 90)"><circle cx="0" cy="0" r="6" fill="#A23A62"/><text x="12" y="5" font-family="Fredoka" font-size="14" fill="#FBDCE6">Milk river</text></g><g transform="translate(-110 -80)"><circle cx="0" cy="0" r="6" fill="#A23A62"/><text x="12" y="5" font-family="Fredoka" font-size="14" fill="#FBDCE6">Cloud meadow</text></g></g></svg></div>
+        <div class="tx"><h3>The Dreamscape Radar</h3><p>Pip tracks sleepy brainwaves across seven neighbouring nurseries to deliver customized sweet dreams.</p><span class="tag">Navigation</span></div>
+      </article>
+
+      <article class="pn">
+        <div class="vis blocks" id="stack"></div>
+        <div class="tx"><h3>Rattle &amp; Block Toys</h3><p>Playable toys Pip invented. Stack Pip’s blocks as high as you dare. Tap a block to pop it.</p><span class="tag">Play</span><button class="btn" id="add">Add a block</button></div>
+      </article>
+
+    </div>
+  </div>
+</section>
+
+<section class="grow" id="growth">
+  <h2>Pip’s growth chart</h2>
+  <p style="margin-top:.8rem;font-weight:300;color:var(--cream)">Skills, marked on the nursery wall.</p>
+  <div class="wall">
+    <div class="row"><label>Dream design <span>92 cm</span></label><div class="bar"><i data-w="92"></i></div></div>
+    <div class="row"><label>Lullabies <span>80 cm</span></label><div class="bar"><i data-w="80"></i></div></div>
+    <div class="row"><label>Nightlights <span>88 cm</span></label><div class="bar"><i data-w="88"></i></div></div>
+    <div class="row"><label>Bedtime stories <span>74 cm</span></label><div class="bar"><i data-w="74"></i></div></div>
+    <div class="row"><label>Giggling <span>100 cm</span></label><div class="bar"><i data-w="100"></i></div></div>
+  </div>
+</section>
+
+<section class="end">
+  <div class="moon" aria-hidden="true"></div>
+  <div><h2>Sleep tight.</h2><p>Pip is still working on tomorrow night’s dreams.</p><a class="btn" href="mailto:you@example.com">Leave Pip a lullaby</a></div>
+</section>
+
+<script>
+const $=s=>document.querySelector(s),cl=(v,a=0,b=1)=>Math.min(b,Math.max(a,v));
+// stars
+const st=$('#stars');for(let i=0;i<46;i++){const e=document.createElement('i');e.style.cssText=`left:${Math.random()*100}%;top:${Math.random()*100}%;animation-delay:${Math.random()*3}s;scale:${.6+Math.random()*1.4}`;st.append(e)}
+// marquee
+const mq=$('#mq');mq.textContent=('Dream engineer ★ Lullabies ★ Nightlights ★ Bedtime stories ★ ').repeat(8);
+// statement words
+const sm=$('#stmt'),words=sm.textContent.split(' ');sm.innerHTML=words.map(w=>`<span>${w}</span>`).join(' ');const ws=[...sm.children];
+// scroll loop
+const track=$('#track'),hs=$('#work'),hero=document.querySelector('.big');
+function frame(){
+  const y=scrollY,H=innerHeight,max=document.documentElement.scrollHeight-H;
+  st.style.opacity=cl((y/max-.4)*2.2);
+  hero.style.setProperty('--py',y*.12);
+  mq.style.transform=`translateX(${-(y*.35)%900}px)`;
+  const r=sm.getBoundingClientRect(),pr=cl((H*.85-r.top)/(r.height+H*.35));
+  ws.forEach((w,i)=>w.classList.toggle('on',i/ws.length<pr));
+  const hr=hs.getBoundingClientRect(),pg=cl(-hr.top/(hs.offsetHeight-H));
+  track.style.transform=`translateX(${-pg*(track.scrollWidth-innerWidth+0)}px)`;
+  requestAnimationFrame(frame)}
+frame();
+addEventListener('pointermove',e=>{document.documentElement.style.setProperty('--mx',(e.clientX/innerWidth-.5).toFixed(3));document.documentElement.style.setProperty('--my',(e.clientY/innerHeight-.5).toFixed(3))});
+const card=$('#card');card.addEventListener('pointermove',e=>{const b=card.getBoundingClientRect();card.style.setProperty('--r',((e.clientX-b.left)/b.width-.5)*8)});card.addEventListener('pointerleave',()=>card.style.setProperty('--r',0));
+// growth bars
+new IntersectionObserver((es,o)=>es.forEach(e=>{if(e.isIntersecting){e.target.querySelectorAll('i').forEach((b,i)=>setTimeout(()=>b.style.width=b.dataset.w+'%',i*180));o.unobserve(e.target)}}),{threshold:.3}).observe($('.wall'));
+// music box
+let ac,timer,playing=false;
+const N={E4:329.6,G4:392,C5:523.3,B4:493.9,A4:440,D4:293.7,F4:349.2,D5:587.3,E5:659.3};
+const tune=[['E4',1],['E4',1],['G4',2],['E4',1],['E4',1],['G4',2],['E4',1],['G4',1],['C5',2],['B4',2],['A4',1],['A4',1],['G4',2],['D4',1],['E4',1],['F4',2],['D4',1],['E4',1],['F4',2],['D4',1],['F4',1],['B4',2],['A4',2],['G4',1],['A4',1],['C5',3]];
+function bell(f,t){const o=ac.createOscillator(),g=ac.createGain();o.type='sine';o.frequency.value=f;g.gain.setValueAtTime(.0001,t);g.gain.exponentialRampToValueAtTime(.22,t+.02);g.gain.exponentialRampToValueAtTime(.0001,t+1.3);o.connect(g).connect(ac.destination);o.start(t);o.stop(t+1.4);const h=ac.createOscillator(),g2=ac.createGain();h.frequency.value=f*3;g2.gain.setValueAtTime(.05,t);g2.gain.exponentialRampToValueAtTime(.0001,t+.5);h.connect(g2).connect(ac.destination);h.start(t);h.stop(t+.6)}
+function song(){const t0=ac.currentTime+.05;let t=t0;tune.forEach(([n,d])=>{bell(N[n],t);t+=d*.42});return(t-t0)*1000+800}
+const mb=$('#mb');mb.onclick=()=>{ac=ac||new (window.AudioContext||window.webkitAudioContext)();playing=!playing;mb.setAttribute('aria-pressed',playing);$('#p1').classList.toggle('play',playing);mb.textContent=playing?'Stop the lullaby':'Wind the music box';clearTimeout(timer);if(ac.state==='suspended')ac.resume();
+  if(playing){const loop=()=>{timer=setTimeout(loop,song())};loop()}else{ac.suspend().then(()=>ac.resume())}};
+// lantern
+const lt=$('#lt');lt.onclick=()=>{const on=$('#p2').classList.toggle('lit');lt.setAttribute('aria-pressed',on);lt.textContent=on?'Blow it out':'Light the lantern'};
+// blocks
+const cols=['#A23A62','#CDB8E3','#F0A6C0','#E6B93E','#8E6AA8'],lets='PIPDREAMZ';let n=0;
+function add(){const stack=$('#stack');if(stack.children.length>=9){stack.innerHTML=''}const b=document.createElement('div');b.className='blk';b.textContent=lets[n%lets.length];b.style.background=cols[n%cols.length];b.style.translate=((Math.random()-.5)*26)+'px 0';b.style.rotate=((Math.random()-.5)*6)+'deg';b.onclick=()=>b.remove();stack.append(b);n++}
+$('#add').onclick=add;add();add();add();
+
+// Ensure dual background videos (Dawn.mp4 & midnight.mp4) play automatically
+const vDawn = document.getElementById('bg-video-dawn');
+const vMidnight = document.getElementById('bg-video-midnight');
+
+[vDawn, vMidnight].forEach(v => {
+  if (v) {
+    v.muted = true;
+    v.defaultMuted = true;
+    v.playsInline = true;
+    v.loop = true;
+    const playV = () => { v.play().catch(()=>{}); };
+    playV();
+    ['pointerdown', 'touchstart', 'scroll', 'click'].forEach(evt => {
+      window.addEventListener(evt, playV, { once: true, passive: true });
+    });
+  }
+});
+
+let isMidnightMode = false;
+const skyBtn = document.getElementById('sky-toggle-btn');
+if (skyBtn) {
+  skyBtn.onclick = () => {
+    isMidnightMode = !isMidnightMode;
+    document.body.classList.toggle('sky-midnight', isMidnightMode);
+    document.body.classList.toggle('sky-dawn', !isMidnightMode);
+    skyBtn.querySelector('#sky-btn-icon').textContent = isMidnightMode ? '🌌' : '☀️';
+    skyBtn.querySelector('#sky-btn-text').textContent = isMidnightMode ? 'Midnight' : 'Dawn';
+    if (vDawn && vMidnight) {
+      vDawn.style.opacity = isMidnightMode ? '0' : '1';
+      vMidnight.style.opacity = isMidnightMode ? '1' : '0';
+      if (isMidnightMode && vMidnight.paused) vMidnight.play().catch(()=>{});
+      if (!isMidnightMode && vDawn.paused) vDawn.play().catch(()=>{});
+    }
+  };
+}
+// Intro Video Logic
+const introOverlay = document.getElementById('pip-intro-overlay');
+const introVid = document.getElementById('pip-intro-video');
+
+if (introOverlay) {
+  document.documentElement.classList.add('intro-active');
+  document.body.classList.add('intro-active');
+}
+
+function closeIntro() {
+  if (!introOverlay) return;
+  document.documentElement.classList.remove('intro-active');
+  document.body.classList.remove('intro-active');
+  introOverlay.style.opacity = '0';
+  introOverlay.style.filter = 'blur(16px)';
+  introOverlay.style.pointerEvents = 'none';
+  setTimeout(() => {
+    introOverlay.style.display = 'none';
+    if (introVid) introVid.pause();
+  }, 900);
+}
+
+if (introVid) {
+  introVid.muted = false;
+  const p = introVid.play();
+  if (p !== undefined) {
+    p.catch(() => {
+      introVid.muted = true;
+      introVid.play().catch(() => {});
+      const unmuteOnInteraction = () => {
+        if (introVid) { introVid.muted = false; }
+      };
+      window.addEventListener('pointerdown', unmuteOnInteraction, { once: true, passive: true });
+      window.addEventListener('keydown', unmuteOnInteraction, { once: true, passive: true });
+    });
+  }
+  introVid.addEventListener('click', () => {
+    if (introVid.muted) { introVid.muted = false; }
+    if (introVid.paused) { introVid.play().catch(()=>{}); }
+    else { introVid.pause(); }
+  });
+  introVid.addEventListener('ended', closeIntro);
+}
+const skip1 = document.getElementById('skip-intro-btn');
+const skip2 = document.getElementById('enter-site-btn');
+if (skip1) skip1.onclick = closeIntro;
+if (skip2) skip2.onclick = closeIntro;
+</script>
+</body></html>

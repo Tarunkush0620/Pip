@@ -66,34 +66,73 @@ export function initStatsAndGrowth() {
   const cheerBtn = document.getElementById('cheer-pip-btn');
   if (cheerBtn) {
     cheerBtn.addEventListener('click', (e) => {
-      nurseryAudio.playChime('C5');
+      nurseryAudio.playPipGiggle();
       const gigglesStat = document.getElementById('giggles-stat');
       if (gigglesStat) {
         gigglesStat.textContent = '∞ + 1';
         gigglesStat.classList.add('scale-125', 'text-moon');
         setTimeout(() => {
           gigglesStat.classList.remove('scale-125', 'text-moon');
-        }, 500);
+        }, 600);
       }
+
+      // Shimmer and pulse all growth bars
+      const allBars = document.querySelectorAll('.growth-bar-fill');
+      allBars.forEach((bar) => {
+        bar.classList.add('animate-pulse-glow', 'scale-y-125');
+        setTimeout(() => bar.classList.remove('animate-pulse-glow', 'scale-y-125'), 800);
+      });
 
       // Spawn floating hearts from button
       const rect = cheerBtn.getBoundingClientRect();
-      for (let i = 0; i < 6; i++) {
+      for (let i = 0; i < 7; i++) {
         const heart = document.createElement('span');
-        heart.textContent = ['💖', '✨', '🍼', '⭐', '🎈'][Math.floor(Math.random() * 5)];
-        heart.className = 'fixed pointer-events-none text-xl z-50';
-        heart.style.left = `${rect.left + rect.width / 2 + (Math.random() - 0.5) * 40}px`;
+        heart.textContent = ['💖', '✨', '🍼', '⭐', '🎈', '🌸'][Math.floor(Math.random() * 6)];
+        heart.className = 'fixed pointer-events-none text-xl z-50 select-none';
+        heart.style.left = `${rect.left + rect.width / 2 + (Math.random() - 0.5) * 50}px`;
         heart.style.top = `${rect.top}px`;
-        heart.style.transition = 'all 0.8s cubic-bezier(0.2, 0.9, 0.3, 1)';
+        heart.style.transition = 'all 0.9s cubic-bezier(0.2, 0.9, 0.3, 1)';
         document.body.appendChild(heart);
 
         requestAnimationFrame(() => {
-          heart.style.transform = `translate(${(Math.random() - 0.5) * 60}px, -${60 + Math.random() * 40}px) scale(1.4)`;
+          heart.style.transform = `translate(${(Math.random() - 0.5) * 70}px, -${60 + Math.random() * 50}px) scale(1.4)`;
           heart.style.opacity = '0';
         });
 
-        setTimeout(() => heart.remove(), 800);
+        setTimeout(() => heart.remove(), 900);
       }
     });
   }
+
+  // Interactive Skill Rows
+  const skillRows = document.querySelectorAll('.growth-skill-row');
+  const skillNotes = ['C4', 'E4', 'G4', 'B4', 'C5'];
+  skillRows.forEach((row, idx) => {
+    row.addEventListener('click', () => {
+      const note = skillNotes[idx % skillNotes.length];
+      nurseryAudio.playChime(note);
+
+      const bar = row.querySelector('.growth-bar-fill');
+      if (bar) {
+        bar.classList.add('brightness-125', 'scale-y-125');
+        setTimeout(() => bar.classList.remove('brightness-125', 'scale-y-125'), 350);
+      }
+
+      const rect = row.getBoundingClientRect();
+      const spark = document.createElement('span');
+      spark.textContent = ['✨', '☁️', '🎵', '💡', '🌟'][idx % 5];
+      spark.className = 'fixed pointer-events-none text-base z-50';
+      spark.style.left = `${rect.left + 30}px`;
+      spark.style.top = `${rect.top}px`;
+      spark.style.transition = 'all 0.6s ease-out';
+      document.body.appendChild(spark);
+
+      requestAnimationFrame(() => {
+        spark.style.transform = 'translateY(-30px) scale(1.3)';
+        spark.style.opacity = '0';
+      });
+
+      setTimeout(() => spark.remove(), 600);
+    });
+  });
 }

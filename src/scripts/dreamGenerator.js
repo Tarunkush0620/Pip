@@ -106,6 +106,7 @@ export function initDreamGenerator() {
     const vibeEl = document.getElementById('dream-result-vibe');
     const storyEl = document.getElementById('dream-result-story');
     const quoteEl = document.getElementById('dream-result-quote');
+    const badgeEl = document.getElementById('dream-certificate-badge');
 
     if (!resultCard) return;
 
@@ -114,6 +115,7 @@ export function initDreamGenerator() {
     if (orb) {
       orb.classList.add('animate-pulse-glow', 'scale-110');
       setTimeout(() => orb.classList.remove('scale-110'), 600);
+      nurseryAudio.playPipGiggle();
     }
 
     const key = Array.from(selected).sort().join('+');
@@ -125,7 +127,9 @@ export function initDreamGenerator() {
     };
 
     const recipe = dreamRecipes[key] || fallback;
+    const certNum = Math.floor(1000 + Math.random() * 9000);
 
+    if (badgeEl) badgeEl.textContent = `Bedtime Certificate #D-${certNum}`;
     if (titleEl) titleEl.textContent = recipe.title;
     if (vibeEl) vibeEl.textContent = recipe.vibe;
     if (storyEl) storyEl.textContent = recipe.story;
@@ -138,6 +142,82 @@ export function initDreamGenerator() {
   const weaveBtn = document.getElementById('weave-btn');
   if (weaveBtn) {
     weaveBtn.onclick = weaveDream;
+  }
+
+  // Read Aloud Dream Voice Narration
+  const narrateBtn = document.getElementById('dream-read-aloud-btn');
+  const narrateIcon = document.getElementById('dream-narrate-icon');
+  const narrateLabel = document.getElementById('dream-narrate-label');
+  let isDreamNarrating = false;
+
+  if (narrateBtn) {
+    narrateBtn.addEventListener('click', () => {
+      const title = document.getElementById('dream-result-title')?.textContent || '';
+      const story = document.getElementById('dream-result-story')?.textContent || '';
+      const quote = document.getElementById('dream-result-quote')?.textContent || '';
+      const textToSpeak = `${title}. ${story}. Pip's note: ${quote}`;
+
+      if (!('speechSynthesis' in window)) {
+        alert("Speech synthesis is not supported on this device, but Pip's musical bells are always here for you!");
+        return;
+      }
+
+      if (window.speechSynthesis.speaking) {
+        window.speechSynthesis.cancel();
+        isDreamNarrating = false;
+        if (narrateIcon) narrateIcon.textContent = '🔊';
+        if (narrateLabel) narrateLabel.textContent = 'Read Dream to Me';
+      } else {
+        const utter = new SpeechSynthesisUtterance(textToSpeak);
+        utter.rate = 0.84;
+        utter.pitch = 1.05;
+
+        utter.onstart = () => {
+          isDreamNarrating = true;
+          if (narrateIcon) narrateIcon.textContent = '⏹️';
+          if (narrateLabel) narrateLabel.textContent = 'Pause Reading';
+          nurseryAudio.playChime('C6');
+        };
+
+        utter.onend = () => {
+          isDreamNarrating = false;
+          if (narrateIcon) narrateIcon.textContent = '🔊';
+          if (narrateLabel) narrateLabel.textContent = 'Read Dream to Me';
+          nurseryAudio.playPipGiggle();
+        };
+
+        utter.onerror = () => {
+          isDreamNarrating = false;
+          if (narrateIcon) narrateIcon.textContent = '🔊';
+          if (narrateLabel) narrateLabel.textContent = 'Read Dream to Me';
+        };
+
+        window.speechSynthesis.speak(utter);
+      }
+    });
+  }
+
+  // Save / Print Certificate
+  const saveBtn = document.getElementById('dream-save-cert-btn');
+  if (saveBtn) {
+    saveBtn.addEventListener('click', () => {
+      nurseryAudio.playChime('G5');
+      window.print();
+    });
+  }
+
+  // Pre-fill Whispers Form on Share
+  const whisperLink = document.getElementById('dream-whisper-link');
+  if (whisperLink) {
+    whisperLink.addEventListener('click', () => {
+      nurseryAudio.playChime('C5');
+      const title = document.getElementById('dream-result-title')?.textContent || '';
+      const msgArea = document.getElementById('whisper-msg');
+      if (msgArea) {
+        msgArea.value = `Pip wove a dream for me: "${title}" ✨ Sweet dreams!`;
+        msgArea.focus();
+      }
+    });
   }
 
   renderIngredients();

@@ -95,6 +95,49 @@ export function renderAbout() {
             </div>
           </div>
 
+          <!-- The Story Behind This Portfolio: Built for Babies & Parents -->
+          <div class="pt-8 border-t border-berry/15">
+            <div class="inline-flex items-center gap-1.5 text-xs font-bold uppercase tracking-wider text-berry mb-2">
+              <span>📖</span> <span>The Bedtime Story Behind This Portfolio</span>
+            </div>
+            <h3 class="font-display text-2xl sm:text-3xl font-extrabold text-berry dark:text-moon leading-tight mb-3">
+              Why Did Pip Build This Nursery?
+            </h3>
+            <p class="text-sm sm:text-base text-ink/90 dark:text-cream/90 leading-relaxed font-normal mb-5">
+              One twilight in Somnia, Pip peered through his starlight telescope down at Earth. In the quiet nurseries below, <strong>little babies were crying in the dark</strong>—the silence felt too loud, the shadows seemed scary, and exhausted mothers and fathers were pacing the floor at 2:00 AM. Pip hated silence and couldn’t bear to see anyone cry. So he rolled up his nightgown sleeves and engineered this portfolio to turn bedtime into an enchanted haven for both babies and parents.
+            </p>
+
+            <!-- Dual Audience Cards -->
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-3.5 mb-6">
+              <div class="p-4 rounded-2xl bg-pink-500/10 dark:bg-pink-950/40 border border-pink-400/30">
+                <div class="flex items-center gap-2 mb-1.5">
+                  <span class="text-lg">👶</span>
+                  <h4 class="font-display font-bold text-sm text-berry dark:text-pink-300">For Little Babies</h4>
+                </div>
+                <p class="text-xs text-ink/80 dark:text-cream/80 leading-relaxed">
+                  Soothing 432 Hz music box bells that synchronize with a mother's resting heart rate, gentle 2700K amber nightlights that preserve melatonin, and playful wooden blocks for tired giggles.
+                </p>
+              </div>
+
+              <div class="p-4 rounded-2xl bg-amber-500/10 dark:bg-amber-950/40 border border-amber-400/30">
+                <div class="flex items-center gap-2 mb-1.5">
+                  <span class="text-lg">🧑‍🍼</span>
+                  <h4 class="font-display font-bold text-sm text-amber-800 dark:text-amber-300">For Loving Parents</h4>
+                </div>
+                <p class="text-xs text-ink/80 dark:text-cream/80 leading-relaxed">
+                  Sing-along lyrics for classic Hindi & world lullabies, calming ambient rain and crickets, a gentle bedtime routine helper, and bedtime storybooks ready to read aloud.
+                </p>
+              </div>
+            </div>
+
+            <!-- Narrative Bridge to Inventions -->
+            <div class="flex items-center gap-3">
+              <a href="#work" class="btn-berry px-5 py-2.5 rounded-full font-display font-bold text-xs sm:text-sm text-white shadow-md hover:scale-105 active:scale-95 transition-all inline-flex items-center gap-2">
+                <span>🛠️</span> <span>Explore Pip’s 5 Bedtime Inventions</span>
+              </a>
+            </div>
+          </div>
+
         </div>
 
       </div>

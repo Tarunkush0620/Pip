@@ -6,7 +6,7 @@
   ### *"I build the dreams you fall asleep inside."*
 
   <p align="center">
-    <b>A story-driven, interactive bedtime web haven engineered for both babies and their parents.<br/>
+    <b>An award-grade, story-driven bedtime web haven engineered for both babies and their parents.<br/>
     Submitted to <a href="https://hax.baby">haX.baby</a> · Track 1 (Pip the Skull Baby).</b>
   </p>
 
@@ -21,12 +21,13 @@
   </p>
 
   <p align="center">
-    <a href="#-the-story-behind-this-portfolio">The Story Behind Pip</a> •
-    <a href="#-dual-audience-ux-babies--parents">Baby & Parent Haven</a> •
-    <a href="#-the-5-slumber-inventions">Inventions</a> •
+    <a href="#-the-story-behind-this-portfolio">The Story of Pip</a> •
+    <a href="#-dual-audience-haven-babies--parents">Baby & Parent Haven</a> •
+    <a href="#-features-overview">Features</a> •
     <a href="#-the-lullaby-lab--rhymes-atelier">Lullaby Lab</a> •
-    <a href="#-interactive-controls--shortcuts">Shortcuts</a> •
+    <a href="#-interactive-controls--shortcuts">Keyboard Shortcuts</a> •
     <a href="#-architecture--engineering">Architecture</a> •
+    <a href="#-repository-structure">Directory Structure</a> •
     <a href="#-getting-started">Getting Started</a>
   </p>
 
@@ -41,49 +42,42 @@
 > **Hackathon Core Requirement:** *This portfolio is not an ordinary tech resume. It is rooted entirely in an enchanted bedtime story.*
 
 ### 🌌 Prologue: The Baby from the Stardust Nebula
-In the dreamlands of **Somnia**, where pastel clouds drift across lavender skies, a sleepy little baby night-spirit was born inside a glowing nebula. He had a smooth, round skull face, huge glowing amber eyes, and an oversized starry nightcap. 
+In the dreamlands of **Somnia**, where pastel clouds drift across lavender skies, a sleepy little baby night-spirit was born inside a glowing stardust nebula. He had a smooth, round skull face, huge glowing amber eyes, and an oversized starry nightcap. 
 
 The elders of the sky named him **Pip**. Pip was curious, clumsy, easily delighted, giggled at the whisper of the night breeze, and above all: **he hated silence**.
 
 ### 🔭 Chapter I: The Great Earth Silence (The Bedtime Struggle)
-One twilight in **Moonberry Hollow**, Pip climbed the brass ladder of the celestial clocktower and looked through his starlight telescope down at Earth.
+One twilight in **Moonberry Hollow**, Pip climbed the brass ladder of the celestial clocktower and peered through his starlight telescope down at Earth.
 
 Down below, he witnessed the universal bedtime struggle:
-1. **Restless, Crying Babies**: Little ones were crying in their cribs because the night felt too dark, shadows loomed large, and the utter silence was terrifying to ears accustomed to the constant, rhythmic whoosh of a mother’s heartbeat.
+1. **Restless, Crying Babies**: Little ones were crying in their cribs because the night felt too dark, shadows loomed large, and the utter silence was terrifying to ears accustomed to the constant, rhythmic hum of a mother’s heartbeat.
 2. **Exhausted, Overwhelmed Parents**: Mothers and fathers were pacing dark bedrooms at 2:00 AM, desperately rocking cribs, singing songs through tired yawns, and struggling to soothe their little ones without harsh overhead lights.
 
 Pip clutched his starry cap with wide eyes:
 > *“No baby should ever fear the dark, and no loving parent should have to carry bedtime all alone!”*
 
 ### 🛠️ Chapter II: How Every Portfolio Project Was Born
-Pip flew down to his workbench at the **Midnight Nursery** and engineered five wondrous inventions—each built specifically to solve a bedtime need:
+Pip flew down to his workbench at the **Midnight Nursery** and engineered five wondrous inventions—each built specifically to solve a bedtime struggle:
 
-| Story Struggle | Pip’s Invention | How It Solves The Need |
+| Bedtime Struggle | Pip’s Invention | How It Solves The Need |
 | :--- | :--- | :--- |
-| **Babies fear the cold silence** | **🎵 The Lullaby Lab** | Synthesizes pure 432 Hz music box bells matching maternal resting heart rates (60–80 BPM) to naturally calm infant nervous systems. |
+| **Babies fear cold silence** | **🎵 The Lullaby Lab** | Synthesizes pure 432 Hz music box bells matching maternal resting heart rates (60–80 BPM) to naturally calm infant nervous systems. |
 | **Harsh lights ruin infant sleep** | **💡 Nocturnal Nightlights** | Hand-blown 2700K amber glow lanterns that melt scary shadows away without suppressing delicate infant melatonin. |
 | **Babies fear nightmares in sleep** | **🗺️ Dream Delivery Flight Radar** | Pip flies his sky-sled over chimneys before midnight, personally slipping custom sweet dreams under every crib pillow. |
 | **Restless hands & teething distress** | **🧸 Sensory Blocks & Rattle** | Tactile wooden blocks and baby rattles that build fine-motor coordination, soothe teething tension, and prompt sleepy giggles. |
 | **Parents need soothing bedtime rituals** | **📖 Bedtime Storybook Atelier** | Curated storybooks and read-aloud whispers that create a predictable, bonding wind-down routine between parent and child. |
 
 ### 🧑‍🍼 Chapter III: The Sanctuary for Tired Parents
-Pip realized that **a baby cannot truly relax if their parent is anxious and exhausted**. To support parents, Pip built the **Parent Sanctuary Mode**: providing full sing-along lyrics and English translations for traditional lullabies, a progressive Bedtime Sleep Timer that gently dims the room, and a fullscreen crib-side amber nightlight lamp.
+Pip understood a golden secret: **a baby cannot truly relax if their parent is anxious and exhausted**. To support parents, Pip built the **Parent Sanctuary Mode**: providing sing-along lyrics and English translations for traditional lullabies, a progressive Bedtime Sleep Timer that gently dims the room, and a fullscreen crib-side amber nightlight lamp.
 
 ---
 
-## 👶🧑‍🍼 Dual-Audience UX: Babies & Parents
+## 👶🧑‍🍼 Dual-Audience Haven: Babies & Parents
 
 Pip’s Portfolio features a dedicated **Audience Mode Bar** that instantly adapts the entire digital experience for both members of the bedtime family:
 
-```
-┌────────────────────────────────────────────────────────────────────────┐
-│                   BABY & PARENT HAVEN DUAL SWITCHER                    │
-│      [ 👶 Baby Sensory Mode ]       [ 🧑‍🍼 Parent Sanctuary Mode ]       │
-└────────────────────────────────────────────────────────────────────────┘
-```
-
 ### 👶 1. For Babies: Sensory Delight & Motor Play
-- **🪇 Pip’s Interactive Baby Rattle**: A tactile, animated rattle widget. Tapping or shaking it triggers authentic maraca bead bursts, wooden bead clacks, and triggers Pip's warm baby giggles.
+- **🪇 Pip’s Interactive Baby Rattle**: A tactile, animated rattle widget. Tapping or shaking it triggers authentic maraca bead bursts, wooden bead clacks, and prompts Pip's warm baby giggles.
 - **🫧 Tap-to-Pop Stardust Bubbles**: Iridescent soap bubbles drift gently up the screen. Touching any bubble pops it with a resonant bell chime and a burst of colorful stardust confetti.
 - **🐥 Squeaky Toy & Baby Giggle Loops**: Interactive sound triggers for squeaky plushies and cheerful laughter.
 - **👀 Newborn Visual Filter (0–6 Months)**: Toggle high-contrast, bold outlines tailored for infants whose visual cortices are developing and respond best to high-contrast edges.
@@ -97,35 +91,70 @@ Pip’s Portfolio features a dedicated **Audience Mode Bar** that instantly adap
 
 ---
 
-## 🛠️ The 5 Slumber Inventions
+## ✨ Features Overview
 
-Keep scrolling down on the website—the nursery gallery rolls by sideways in smooth 3D perspective:
+### 🎬 1. Cinematic Edge-to-Edge Intro Experience
+- **Unobtrusive Story Prologue**: A full-page, edge-to-edge video introducing Pip’s midnight universe.
+- **Silent Fallback Autoplay**: Smart audio policy handling — begins smoothly without disruptive blocking overlays and unsets mute on user interaction.
+- **Atmospheric HUD**: Minimalist top prologue tag and clean bottom-right CTA pill with safe-area notch insets.
+- **Fluid Dissolve**: Smooth cubic-bezier zoom and blur transition welcoming the visitor directly into the nursery.
 
-```
-    ┌──────────────┐   ┌──────────────┐   ┌──────────────┐   ┌──────────────┐   ┌──────────────┐
-    │ 🎵 LULLABY   │ → │ 💡 NIGHTLIGHT│ → │ 🗺️ RADAR MAP │ → │ 🧸 BLOCKS    │ → │ 📖 STORYBOOK │
-    │ 432Hz Bells  │   │ 2700K Amber  │   │ Flight Sled  │   │ Stacking Toy │   │ Bedtime Tales│
-    └──────────────┘   └──────────────┘   └──────────────┘   └──────────────┘   └──────────────┘
-```
+### ☀️/🌅/🌌 2. Tri-Phase Celestial Sky Cycle Engine
+- **Live Atmosphere Cycling**: Dynamically blend between **Dawn (06:00 ☀️)**, **Twilight (19:30 🌅)**, and **Midnight (23:45 🌌)**.
+- **Dual Synced Video Backgrounds**: High-definition sky video loops (`Dawn.mp4` and `midnight.mp4`) with synchronized CSS brightness, saturation, and contrast filters.
+- **Lighting Atmosphere HUD**: Slide-out drawer with celestial time slider, starlight density telemetry, and active hue syncing for lamps and lanterns.
+- **Shooting Star Mechanics**: Press `S` or tap the button to summon animated shooting stars across the cosmic sky.
 
-1. **Card 1: The Lullaby Lab**: Wind up the interactive clockwork key to play Pip’s signature lullaby or choose from 5 studio-recorded Indian nursery rhymes with live spectrum visualization.
-2. **Card 2: Nocturnal Nightlight**: Tap the brass switch to dim the room and cast a warm, comforting amber aura over the nursery.
-3. **Card 3: Dream Delivery Radar**: Real-time canvas radar mapping Pip’s airborne flight path over Somnia’s rooftops with altitude telemetry and cloud diagnostics.
-4. **Card 4: Physics Block Stacking Playpen**: Click to stack colorful wooden toy blocks; tap any block to burst it into floating stardust particles.
-5. **Card 5: Bedtime Storybook Atelier**: Features 3D page-turning physics, bookmarks, and automated Web Speech API Bedtime Narration.
+### 📖 3. Interactive Story Journey (5 Illustrated Chapters)
+- **Living Storybook Stage**: Read Pip’s complete origin saga across 5 chapters with artwork, bedtime whisper quotes, and dual baby/parent perspectives.
+- **Read Chapter to Me**: Automated voice narration via Web Speech API with gentle bedtime cadence and musical chime accompaniment.
+- **Story-to-Invention Bridges**: Direct CTA buttons that link each story chapter to the corresponding invention in Pip’s workshop.
+
+### 🎵 4. The Lullaby Lab & Hindi Nursery Rhymes Player
+- **Clockwork Music Box**: An interactive audio atelier designed to comfort little dreamers.
+- **6 Rich Bedtime Melodies**: Loaded with 5 classic Hindi nursery rhymes plus Pip's signature 432 Hz synthesized music box chimes.
+- **Real-Time Spectrum Visualizer**: Animated sound waveform bars synchronized with music playback.
+- **Interactive Winding Key**: Wind the music box to trigger rotational animations, floating musical notes (`♪ ♫ ♩ ✨`), and soothing harmonics.
+
+### 💡 5. Nocturnal Nightlight & Bedside Chamber
+- **Dynamic Bedtime Dimmer**: Switch Pip’s crescent moon lantern on or off; blowing out the lantern casts deep ambient darkness over the nursery.
+- **Atmosphere Vignette**: Soft radial warm candle flicker that creates a cozy bedtime environment.
+
+### 🗺️ 6. Somnia Dream Delivery Radar
+- **Live Flight Map**: Real-time canvas radar mapping Pip’s airborne flight path over rooftops, chimneys, and cloud lanes.
+- **Flight Diagnostics**: Altitude meters, cloud density telemetry, and dream cargo counts.
+
+### 🧸 7. Physics Block Stacking Playpen
+- **Interactive Toy Stack**: Click or tap to stack Pip's colorful rattle blocks.
+- **Pop-to-Clear**: Tap individual blocks to burst them into stardust particles.
+
+### 📖 8. Bedtime Storybook Atelier
+- **Illustrated Bedtime Stories**: Cozy bedtime tales written and illustrated by Pip (*"Pip & The Sleepy Star"*, *"Mom's Hands"*, *"The Owl Who Stopped Pretending"*).
+- **Interactive Page Flip**: 3D paper-turning physics with dynamic shadow drops and chapter bookmarks.
+- **Voice Narration**: Word-by-word stardust highlighting powered by Web Speech API.
+
+### 🔮 9. The Dream Weaver Alchemy Lab
+- **Bedtime Ingredient Pantry**: Combine soothing dream ingredients (e.g., *Cloud Fluff*, *Moonbeam Honey*, *Lavender Breeze*, *Starlight Kitten*).
+- **Official Bedtime Certificate**: Generates a numbered, 100% nightmare-proof dream card with high-contrast typography in both Dawn and Midnight modes.
+- **Interactive Actions**: Read Dream Aloud (Speech Synthesis), Save/Print Bedtime Certificate, and 1-click share to the Community Whispers Guestbook.
+
+### 📱 10. 100% Responsive Mobile Architecture
+- **Mobile Navigation Drawer**: Clean glassmorphism drawer accessible via a top hamburger button.
+- **Touch Swipe Horizontal Gallery**: Touch-friction swipe controls for invention cards with `100dvh` viewport adaptation.
+- **Zero Horizontal Blowout**: Strict responsive typography from 320px screens up to 4K displays.
 
 ---
 
 ## 🎶 The Lullaby Lab & Rhymes Atelier
 
-| # | Song Title | Hindi Title | Engine | Pediatric Sleep Benefit |
+| # | Song Title | Hindi Title | Engine | Pediatric Sleep Benefit & Mood |
 | :-: | :--- | :--- | :-: | :--- |
-| **1** | **Lakdi Ki Kathi** | लकड़ी की काठी | Studio MP3 | Joyful rhythm to tire out energetic toddler legs before bath |
-| **2** | **Chanda Mama Door Ke** | चंदा मामा दूर के | Studio MP3 | Slow pentatonic cadence matching infant sleep respiratory rate |
-| **3** | **Nani Teri Morni** | नानी तेरी मोरनी | Studio MP3 | Storytelling rhyme stimulating early phoneme recognition |
-| **4** | **Lalla Lalla Lori** | लल्ला लल्ला लोरी | Studio MP3 | Soft "L" and "M" phonemes acting as biological pacifiers |
-| **5** | **Twinkle Twinkle Little Star** | ट्विंकल ट्विंकल | Studio MP3 | Timeless reassuring melody that eases separation anxiety |
-| **6** | **Pip’s Music Box** | 432 Hz Synth Bell | Web Audio API | Pure mathematical sine oscillators inducing delta brainwaves |
+| **1** | **Lakdi Ki Kathi** | लकड़ी की काठी | High-Bitrate Studio MP3 | Joyful rhythm to tire out energetic toddler legs before bath |
+| **2** | **Chanda Mama Door Ke** | चंदा मामा दूर के | High-Bitrate Studio MP3 | Slow pentatonic cadence matching infant sleep respiratory rate |
+| **3** | **Nani Teri Morni** | नानी तेरी मोरनी | High-Bitrate Studio MP3 | Storytelling rhyme stimulating early phoneme recognition |
+| **4** | **Lalla Lalla Lori** | लल्ला लल्ला लोरी | High-Bitrate Studio MP3 | Soft "L" and "M" phonemes acting as biological pacifiers |
+| **5** | **Twinkle Twinkle Little Star** | ट्विंकल ट्विंकल | High-Bitrate Studio MP3 | Timeless reassuring melody that eases bedtime separation anxiety |
+| **6** | **Pip’s Music Box** | 432 Hz Synth Bells | Web Audio API Oscillator | Pure mathematical sine oscillators inducing delta brainwaves |
 
 ---
 
@@ -139,10 +168,12 @@ Keep scrolling down on the website—the nursery gallery rolls by sideways in sm
 | <kbd>Esc</kbd> | Intro Mode | Skip intro and immediately enter the nursery |
 | <kbd>←</kbd> / <kbd>→</kbd> | Inventions | Navigate between Pip's 5 invention cards |
 | **Tap Mode Pill** | Header / Haven | Switch between **👶 Baby Mode** and **🧑‍🍼 Parent Mode** |
-| **Tap Pip's Avatar** | Hero Section | Hear Pip's authentic baby greeting bubble 🧸 |
 | **Tap Baby Rattle** | Baby Haven | Shake the rattle with real sound & trigger Pip's giggle |
-| **Tap Inside Garden** | Baby Haven | Spawn and pop stardust bubbles with harmonic bells |
+| **Tap Bubble Garden** | Baby Haven | Spawn and pop stardust bubbles with harmonic bells |
+| **Tap Pip's Avatar** | Hero Section | Hear Pip's authentic baby greeting bubble 🧸 |
+| **Tap Dream Orb** | Dream Weaver | Pulse stardust glow and hear Pip's slumber giggle |
 | **Tap Lantern** | Invention #2 | Toggle bedroom nightlight on / off |
+| **Drag / Touch Swipe** | Showcase | Smooth 3D perspective horizontal gallery slide |
 
 ---
 
@@ -155,26 +186,20 @@ graph TD
     B --> D[Sky Cycle Controller - Dawn / Twilight / Midnight]
     B --> E[Three.js 3D Engine & Autonomous Roamer]
     B --> F[Audio Engine - Web Audio API Synthesizer]
-    B --> G[Story Journey Controller - 5 Chapter Saga]
-    B --> H[Dual-Audience Controller - Baby & Parent]
-    B --> I[Horizontal Scroll Perspective Engine]
+    B --> G[About Component - Story Behind Portfolio & Dual Audience]
+    B --> H[Showcase Horizontal Scroll Perspective Engine]
+    B --> I[Dream Weaver Alchemy Lab - Voice & Certificates]
+    B --> J[Bedtime Whispers & Community Guestbook]
     
     F --> F1[432Hz Music Box Bells]
-    F --> F2[Baby Rattle & Bubble Pop Synth]
-    F --> F3[Nursery Rhyme Player]
-    F --> F4[Pink Noise & Rain Generator]
+    F --> F2[Nursery Rhyme Player - 6 Tracks]
+    F --> F3[Circadian Pink Noise & Rain Generator]
     
-    H --> H1[Interactive Baby Rattle]
-    H --> H2[Tap-to-Pop Bubbles Playground]
-    H --> H3[Bedtime Wind-Down Timer]
-    H --> H4[Sing-Along Lyrics & Meaning]
-    H --> H5[Fullscreen 2700K Screen Lamp]
-    
-    I --> J[The Lullaby Lab]
-    I --> K[Bedside Nightlight]
-    I --> L[Radar Delivery Map]
-    I --> M[Toy Block Playpen]
-    I --> N[Bedtime Storybook]
+    H --> H1[Card 1: The Lullaby Lab & Hindi Rhymes]
+    H --> H2[Card 2: Nocturnal Bedside Nightlight]
+    H --> H3[Card 3: Somnia Dream Delivery Radar]
+    H --> H4[Card 4: Rattle & Block Toys Playpen]
+    H --> H5[Card 5: Bedtime Storybook Atelier]
 ```
 
 ### 1. Zero-Bloat Vanilla JavaScript Architecture
@@ -182,11 +207,15 @@ Built with modular ES6 modules and modern Vite bundler. Zero heavy framework blo
 
 ### 2. Procedural Web Audio Engine (`src/audio/soundEffects.js`)
 - **Sine-Wave Bell Synthesizer**: Implements dual-oscillator harmonic overtone synthesis (`freq * 3.01`) with exponential decay ramps for authentic musical box metallics.
-- **Procedural Baby Sounds**:
-  - `playBubblePop()`: Dual upward glissando oscillators with stardust ring resonance.
-  - `playRattle()`: High-frequency bandpass noise bursts simulating internal wooden beads.
-  - `playSqueakToy()`: Frequency-modulated triangle wave chirp.
+- **Procedural Baby & Nursery Sounds**:
+  - `playBlockPop()`: Dual upward glissando oscillators with stardust ring resonance.
+  - `playBlockDrop()`: Musical wooden block placement with physical bounce harmonics.
+  - `playPipGiggle()`: Sequence of warm pentatonic bell giggles.
 - **Circadian Pink Noise & Rain**: Procedural pink noise filtered at 380 Hz to soothe infant sleep.
+
+### 3. Spatial 3D Perspective Stage
+- Horizontal gallery driven by requestAnimationFrame (RAF) inertia smoothing (lerp factor `0.16`).
+- Cards dynamically scale, rotate, and fade along the Z-axis based on viewport distance.
 
 ---
 
@@ -205,17 +234,15 @@ Pip/
 │   ├── audio/                      # Web Audio API sound synthesis
 │   │   └── soundEffects.js         # Bells, rattles, pops, rain & noise
 │   ├── components/                 # Reusable UI component views
-│   │   ├── About.js                # Character dossier & tools
-│   │   ├── DualAudienceHub.js      # Baby Sensory Mode & Parent Sanctuary
-│   │   ├── StoryJourney.js         # The Story Behind The Portfolio
-│   │   ├── DreamWeaver.js          # Interactive dream laboratory
-│   │   ├── Footer.js               # Bedtime countdown & nightcap
+│   │   ├── About.js                # Character dossier, Story & Dual Audience
+│   │   ├── DreamWeaver.js          # Interactive dream laboratory & certificates
+│   │   ├── Footer.js               # Bedtime countdown & quiet ward
 │   │   ├── GrowthChart.js          # Nursery wall skills tracker
-│   │   ├── Guestbook.js            # Dreamers guestbook
+│   │   ├── Guestbook.js            # Dreamers community guestbook
 │   │   ├── Hero.js                 # Headline, stats, CTAs & Pip avatar
 │   │   ├── Intro.js                # Cinematic full-page intro overlay
 │   │   ├── Marquee.js              # Playful scrolling ribbon
-│   │   ├── Navbar.js               # Floating dock, mode switch & drawer
+│   │   ├── Navbar.js               # Floating dock & mobile drawer
 │   │   ├── Showcase.js             # 5 Inventions gallery & music player
 │   │   └── WorldLore.js            # Somnia atlas & interactive lore
 │   ├── data/                       # Datasets for worlds & storybooks
@@ -225,14 +252,13 @@ Pip/
 │   │   ├── atmosphericEngine.js
 │   │   ├── blocksGame.js
 │   │   ├── deliveryMap.js
-│   │   ├── dreamGenerator.js
-│   │   ├── dualAudienceController.js # Rattle, bubbles, sleep timer & lamp
+│   │   ├── dreamGenerator.js       # Ingredient alchemy, speech & certificate engine
 │   │   ├── horizontalScroll.js
 │   │   ├── introController.js
 │   │   ├── skyCycleController.js
-│   │   ├── storyJourneyController.js # Chapter switching & speech synthesis
 │   │   ├── statsCounter.js
-│   │   └── storybookController.js
+│   │   ├── storybookController.js
+│   │   └── worldLoreController.js
 │   ├── styles/                     # Tailwind CSS & custom design tokens
 │   │   └── main.css
 │   ├── three/                      # Three.js 3D character & scene logic

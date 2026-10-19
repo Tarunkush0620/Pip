@@ -5,8 +5,6 @@ import { renderIntro } from './components/Intro.js';
 import { renderNavbar } from './components/Navbar.js';
 import { renderHero } from './components/Hero.js';
 import { renderMarquee } from './components/Marquee.js';
-import { renderStoryJourney } from './components/StoryJourney.js';
-import { renderDualAudienceHub } from './components/DualAudienceHub.js';
 import { renderAbout } from './components/About.js';
 import { renderWorldLore } from './components/WorldLore.js';
 import { renderShowcase } from './components/Showcase.js';
@@ -21,8 +19,6 @@ import { initCelestialScene } from './three/scene.js';
 import { initPipAutonomous3DRoamer } from './three/pipAutonomous3DRoamer.js';
 import { nurseryAudio } from './audio/soundEffects.js';
 import { initCustomCursor } from './scripts/customCursor.js';
-import { initStoryJourneyController } from './scripts/storyJourneyController.js';
-import { initDualAudienceController } from './scripts/dualAudienceController.js';
 import { initWorldLore } from './scripts/worldLoreController.js';
 import { initHorizontalScroll } from './scripts/horizontalScroll.js';
 import { initBlocksGame } from './scripts/blocksGame.js';
@@ -98,11 +94,9 @@ function assembleApp() {
     <main class="relative z-10">
       ${renderHero()}
       ${renderMarquee()}
-      ${renderStoryJourney()}
-      ${renderDualAudienceHub()}
       ${renderAbout()}
-      ${renderShowcase()}
       ${renderWorldLore()}
+      ${renderShowcase()}
       ${renderDreamWeaver()}
       ${renderGrowthChart()}
       ${renderGuestbook()}
@@ -147,32 +141,6 @@ function initInteractions() {
 
   // 2b. Dynamic Sky Cycle (Dawn ☀️ / Twilight 🌅 / Midnight 🌌)
   initSkyCycle();
-
-  // 2c. Interactive Story Journey (Hackathon narrative foundation)
-  initStoryJourneyController();
-
-  // 2d. Dual-Audience Hub (Baby Sensory Mode & Parent Sanctuary Mode)
-  initDualAudienceController();
-
-  // Setup navbar audience mode toggle bridge
-  let navAudienceState = 'baby';
-  window.toggleNavbarAudienceMode = () => {
-    navAudienceState = navAudienceState === 'baby' ? 'parent' : 'baby';
-    const icon = document.getElementById('navbar-mode-icon');
-    const label = document.getElementById('navbar-mode-label');
-    if (navAudienceState === 'baby') {
-      if (icon) icon.textContent = '👶';
-      if (label) label.textContent = 'Baby Mode';
-    } else {
-      if (icon) icon.textContent = '🧑‍🍼';
-      if (label) label.textContent = 'Parent Mode';
-    }
-    if (window.setPipAudienceMode) {
-      window.setPipAudienceMode(navAudienceState);
-    }
-    const hub = document.getElementById('dual-hub');
-    if (hub) hub.scrollIntoView({ behavior: 'smooth' });
-  };
 
   // 3. World Lore Tabs & Lightbox
   initWorldLore();

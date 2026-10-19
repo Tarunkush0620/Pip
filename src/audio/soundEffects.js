@@ -245,6 +245,107 @@ class NurseryAudio {
     osc.stop(t + 0.12);
   }
 
+  // Gentle sensory bubble pop synthesizer for baby interactions
+  playBubblePop() {
+    if (this.isMuted) return;
+    const ctx = this.ensureContext();
+    const t = ctx.currentTime;
+
+    // Fast upward frequency blip
+    const osc = ctx.createOscillator();
+    const gain = ctx.createGain();
+    osc.type = 'sine';
+    const startFreq = 420 + Math.random() * 120;
+    osc.frequency.setValueAtTime(startFreq, t);
+    osc.frequency.exponentialRampToValueAtTime(startFreq * 2.1, t + 0.06);
+
+    gain.gain.setValueAtTime(0.001, t);
+    gain.gain.linearRampToValueAtTime(0.28, t + 0.015);
+    gain.gain.exponentialRampToValueAtTime(0.001, t + 0.09);
+
+    osc.connect(gain);
+    gain.connect(ctx.destination);
+    osc.start(t);
+    osc.stop(t + 0.1);
+
+    // Resonant stardust ring
+    const ring = ctx.createOscillator();
+    const ringGain = ctx.createGain();
+    ring.type = 'sine';
+    ring.frequency.setValueAtTime(startFreq * 3.2, t);
+    ringGain.gain.setValueAtTime(0.08, t);
+    ringGain.gain.exponentialRampToValueAtTime(0.001, t + 0.15);
+
+    ring.connect(ringGain);
+    ringGain.connect(ctx.destination);
+    ring.start(t);
+    ring.stop(t + 0.16);
+  }
+
+  // Realistic baby rattle shaker sound
+  playRattle() {
+    if (this.isMuted) return;
+    const ctx = this.ensureContext();
+    const bursts = [0, 0.07, 0.14];
+
+    bursts.forEach((offset, idx) => {
+      const t = ctx.currentTime + offset;
+      const bufferSize = Math.floor(ctx.sampleRate * 0.04);
+      const buffer = ctx.createBuffer(1, bufferSize, ctx.sampleRate);
+      const data = buffer.getChannelData(0);
+
+      for (let i = 0; i < bufferSize; i++) {
+        data[i] = (Math.random() * 2 - 1) * 0.25;
+      }
+
+      const noise = ctx.createBufferSource();
+      noise.buffer = buffer;
+
+      const filter = ctx.createBiquadFilter();
+      filter.type = 'bandpass';
+      filter.frequency.setValueAtTime(3200 + idx * 400, t);
+      filter.Q.setValueAtTime(1.8, t);
+
+      const gain = ctx.createGain();
+      gain.gain.setValueAtTime(0.001, t);
+      gain.gain.linearRampToValueAtTime(0.22, t + 0.008);
+      gain.gain.exponentialRampToValueAtTime(0.001, t + 0.038);
+
+      noise.connect(filter);
+      filter.connect(gain);
+      gain.connect(ctx.destination);
+
+      noise.start(t);
+      noise.stop(t + 0.042);
+
+      // Cute wooden bead clack
+      this.playBell(1200 + idx * 300, t, 0.3);
+    });
+  }
+
+  // Cute plushie / squeaky toy sound
+  playSqueakToy() {
+    if (this.isMuted) return;
+    const ctx = this.ensureContext();
+    const t = ctx.currentTime;
+
+    const osc = ctx.createOscillator();
+    const gain = ctx.createGain();
+    osc.type = 'triangle';
+    osc.frequency.setValueAtTime(800, t);
+    osc.frequency.linearRampToValueAtTime(1600, t + 0.07);
+    osc.frequency.linearRampToValueAtTime(1100, t + 0.14);
+
+    gain.gain.setValueAtTime(0.001, t);
+    gain.gain.linearRampToValueAtTime(0.2, t + 0.02);
+    gain.gain.exponentialRampToValueAtTime(0.001, t + 0.16);
+
+    osc.connect(gain);
+    gain.connect(ctx.destination);
+    osc.start(t);
+    osc.stop(t + 0.18);
+  }
+
   // Soothing nursery ambient white noise generator
   toggleAmbient(enable) {
     const ctx = this.ensureContext();

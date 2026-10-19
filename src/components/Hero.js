@@ -14,10 +14,20 @@ export function renderHero() {
       <div class="max-w-7xl mx-auto w-full grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-8 items-center relative z-10">
         <!-- Text Column -->
         <div class="lg:col-span-7 flex flex-col items-start">
-          <!-- Status Badge -->
-          <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-white/95 dark:bg-berry/25 border border-berry/30 text-berry font-display font-bold text-xs sm:text-sm mb-6 shadow-md animate-pulse-glow">
-            <span class="w-2.5 h-2.5 rounded-full bg-emerald-500 animate-ping"></span>
-            <span>Midnight Nursery · On Duty</span>
+          <!-- Status Badge & Dual Audience Tag -->
+          <div class="flex items-center gap-2 flex-wrap mb-4">
+            <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-white/95 dark:bg-berry/25 border border-berry/30 text-berry font-display font-bold text-xs shadow-md animate-pulse-glow">
+              <span class="w-2.5 h-2.5 rounded-full bg-emerald-500 animate-ping"></span>
+              <span>Midnight Nursery · On Duty</span>
+            </div>
+            <div class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-pink-100/90 dark:bg-white/10 border border-pink-300/60 text-berry dark:text-moon font-display font-extrabold text-xs shadow-xs">
+              <span>📖</span>
+              <span>Based on a Bedtime Story</span>
+            </div>
+            <div class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-amber-100/90 dark:bg-amber-950/40 border border-amber-300/60 text-amber-900 dark:text-amber-200 font-display font-bold text-xs shadow-xs">
+              <span>👶 🧑‍🍼</span>
+              <span>Babies & Parents</span>
+            </div>
           </div>
 
           <!-- Hero Name -->
@@ -37,14 +47,24 @@ export function renderHero() {
             &ldquo;I build the dreams you fall asleep inside.&rdquo;
           </p>
 
+          <!-- Narrative Premise -->
+          <p class="text-xs sm:text-sm text-ink/75 dark:text-cream/80 font-medium mt-2 max-w-lg leading-relaxed">
+            An enchanted bedtime portfolio rooted in a story: crafted to bring giggles to restless babies and calm reassurance to tired parents through gentle 432 Hz melodies, soft nightlights, and soothing dreams.
+          </p>
+
           <!-- CTA Row -->
-          <div class="flex flex-col sm:flex-row items-stretch sm:items-center gap-3 sm:gap-4 mt-6 sm:mt-8 w-full sm:w-auto">
-            <a href="#about" class="btn-berry px-6 sm:px-7 py-3 sm:py-3.5 rounded-full font-display font-semibold text-white shadow-lg shadow-berry/30 transition-all duration-300 hover:scale-105 active:scale-95 flex items-center justify-center gap-2.5 sm:gap-3 text-sm sm:text-base">
-              <span class="w-3 h-3 sm:w-3.5 sm:h-3.5 rounded-full bg-moon inline-block animate-bounce"></span>
-              <span>Follow Pip to bedtime</span>
+          <div class="flex flex-col sm:flex-row items-stretch sm:items-center gap-2.5 sm:gap-3 mt-6 sm:mt-7 w-full sm:w-auto flex-wrap">
+            <a href="#story-origin" class="btn-berry px-5 sm:px-6 py-3 rounded-full font-display font-bold text-white shadow-lg shadow-berry/30 transition-all duration-300 hover:scale-105 active:scale-95 flex items-center justify-center gap-2 text-xs sm:text-sm">
+              <span>📖</span>
+              <span>Read Pip’s Story</span>
             </a>
 
-            <button id="summon-stardust-btn" type="button" class="px-5 py-3 sm:py-3.5 rounded-full font-display font-bold text-berry bg-white hover:bg-blush/30 border border-pink-200 shadow-sm transition-all duration-300 hover:scale-105 active:scale-95 flex items-center justify-center gap-2 text-sm sm:text-base cursor-pointer">
+            <a href="#dual-hub" class="px-5 sm:px-6 py-3 rounded-full font-display font-bold text-amber-900 dark:text-amber-200 bg-amber-100 hover:bg-amber-200/80 border border-amber-300 shadow-sm transition-all duration-300 hover:scale-105 active:scale-95 flex items-center justify-center gap-2 text-xs sm:text-sm">
+              <span>👶 🧑‍🍼</span>
+              <span>Baby & Parent Haven</span>
+            </a>
+
+            <button id="summon-stardust-btn" type="button" class="px-4 py-3 rounded-full font-display font-bold text-berry bg-white hover:bg-blush/30 border border-pink-200 shadow-sm transition-all duration-300 hover:scale-105 active:scale-95 flex items-center justify-center gap-1.5 text-xs sm:text-sm cursor-pointer">
               <span>✨</span>
               <span>Sprinkle Stardust</span>
             </button>

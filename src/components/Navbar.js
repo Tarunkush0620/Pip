@@ -7,22 +7,35 @@ export function renderNavbar() {
           <span class="font-display tracking-tight text-xl text-berry">Pip</span>
         </a>
 
-        <div class="hidden md:flex items-center gap-6 text-sm font-semibold text-[#482038]">
-          <a href="#about" class="hover:text-berry transition-colors font-semibold">Story</a>
+        <div class="hidden md:flex items-center gap-5 text-sm font-semibold text-[#482038]">
+          <a href="#story-origin" class="hover:text-berry transition-colors font-bold flex items-center gap-1 text-berry">
+            <span>Story</span>
+            <span class="px-1.5 py-0.2 bg-pink-100 text-berry text-[10px] rounded-full font-extrabold border border-pink-200">Origin</span>
+          </a>
+          <a href="#dual-hub" class="hover:text-berry transition-colors font-bold flex items-center gap-1 text-amber-900 dark:text-amber-200">
+            <span>Baby & Parent</span>
+            <span class="px-1.5 py-0.2 bg-amber-100 text-amber-900 text-[10px] rounded-full font-extrabold border border-amber-300">Haven</span>
+          </a>
+          <a href="#about" class="hover:text-berry transition-colors font-semibold">About</a>
+          <a href="#work" class="hover:text-berry transition-colors font-semibold">Inventions</a>
           <a href="#world" class="hover:text-berry transition-colors flex items-center gap-1 font-semibold">
             <span>World</span>
             <span class="px-1.5 py-0.2 bg-moon text-[#482038] text-[10px] rounded-full font-bold shadow-xs">Lore</span>
           </a>
-          <a href="#work" class="hover:text-berry transition-colors font-semibold">Inventions</a>
           <a href="#dream-weaver" class="hover:text-berry transition-colors flex items-center gap-1 font-semibold">
             <span>Dream Lab</span>
-            <span class="px-1.5 py-0.2 bg-pink-100 text-berry text-[10px] rounded-full font-bold border border-pink-200">New</span>
           </a>
           <a href="#growth" class="hover:text-berry transition-colors font-semibold">Growth</a>
           <a href="#whispers" class="hover:text-berry transition-colors font-semibold">Whispers</a>
         </div>
 
         <div class="flex items-center gap-2">
+          <!-- Audience Mode Quick Switcher -->
+          <button id="navbar-audience-toggle" type="button" class="px-3 py-1.5 rounded-full text-xs font-bold bg-amber-100 dark:bg-amber-950/60 text-amber-950 dark:text-amber-200 hover:bg-amber-200 border border-amber-300 flex items-center gap-1.5 transition-all shadow-xs active:scale-95 cursor-pointer" title="Switch Baby Sensory Mode / Parent Sanctuary Mode" onclick="if(window.toggleNavbarAudienceMode) window.toggleNavbarAudienceMode();">
+            <span id="navbar-mode-icon">👶</span>
+            <span class="hidden sm:inline" id="navbar-mode-label">Baby Mode</span>
+          </button>
+
           <!-- Replay Intro Button -->
           <button id="replay-intro-btn" type="button" class="px-3 py-1.5 rounded-full text-xs font-bold bg-white text-[#482038] hover:text-berry border border-pink-200/80 flex items-center gap-1.5 transition-all shadow-sm active:scale-95 cursor-pointer" title="Replay Opening Video Intro" onclick="if(window.replayPipIntro) window.replayPipIntro();">
             <span>🎬</span>
@@ -157,14 +170,20 @@ export function renderNavbar() {
           <span class="text-[10px] text-ink/60 dark:text-cream/60">Pip’s World</span>
         </div>
         <div class="grid grid-cols-2 gap-2 text-xs font-semibold">
-          <a href="#about" class="mobile-nav-link p-2.5 rounded-2xl bg-berry/5 hover:bg-berry/15 dark:bg-white/5 dark:hover:bg-white/10 flex items-center gap-2 text-ink dark:text-cream transition-colors">
-            <span>📖</span> <span>Pip's Story</span>
+          <a href="#story-origin" class="mobile-nav-link p-2.5 rounded-2xl bg-berry/10 hover:bg-berry/20 text-berry font-bold flex items-center gap-2 transition-colors">
+            <span>📖</span> <span>Story Origin</span>
           </a>
-          <a href="#world" class="mobile-nav-link p-2.5 rounded-2xl bg-berry/5 hover:bg-berry/15 dark:bg-white/5 dark:hover:bg-white/10 flex items-center gap-2 text-ink dark:text-cream transition-colors">
-            <span>🌌</span> <span>World Lore</span>
+          <a href="#dual-hub" class="mobile-nav-link p-2.5 rounded-2xl bg-amber-100/60 hover:bg-amber-200/60 text-amber-900 dark:text-amber-200 font-bold flex items-center gap-2 transition-colors">
+            <span>👶</span> <span>Baby & Parent</span>
+          </a>
+          <a href="#about" class="mobile-nav-link p-2.5 rounded-2xl bg-berry/5 hover:bg-berry/15 dark:bg-white/5 dark:hover:bg-white/10 flex items-center gap-2 text-ink dark:text-cream transition-colors">
+            <span>🧸</span> <span>About Pip</span>
           </a>
           <a href="#work" class="mobile-nav-link p-2.5 rounded-2xl bg-berry/5 hover:bg-berry/15 dark:bg-white/5 dark:hover:bg-white/10 flex items-center gap-2 text-ink dark:text-cream transition-colors">
             <span>💡</span> <span>Inventions</span>
+          </a>
+          <a href="#world" class="mobile-nav-link p-2.5 rounded-2xl bg-berry/5 hover:bg-berry/15 dark:bg-white/5 dark:hover:bg-white/10 flex items-center gap-2 text-ink dark:text-cream transition-colors">
+            <span>🌌</span> <span>World Lore</span>
           </a>
           <a href="#dream-weaver" class="mobile-nav-link p-2.5 rounded-2xl bg-berry/5 hover:bg-berry/15 dark:bg-white/5 dark:hover:bg-white/10 flex items-center gap-2 text-ink dark:text-cream transition-colors">
             <span>🔮</span> <span>Dream Lab</span>

@@ -455,6 +455,193 @@ function initInteractions() {
     polaroid.addEventListener('pointerleave', () => {
       polaroid.style.transform = 'perspective(800px) rotateY(0deg) rotateX(0deg) scale(1)';
     });
+    polaroid.addEventListener('click', triggerPipVoiceGreeting);
+  }
+
+  // 13.5 Character Dossier, Toolbelt & Bedtime Story Interactivity
+  const traitChips = document.querySelectorAll('.trait-chip');
+  traitChips.forEach((chip) => {
+    chip.addEventListener('click', () => {
+      const soundKey = chip.getAttribute('data-sound') || 'E5';
+      const freq = nurseryAudio.NOTES[soundKey] || 523.25;
+      nurseryAudio.playBell(freq, null, 0.85);
+
+      const rect = chip.getBoundingClientRect();
+      const spark = document.createElement('span');
+      spark.textContent = '✨';
+      spark.className = 'fixed pointer-events-none text-sm z-50 select-none';
+      spark.style.left = `${rect.left + rect.width / 2}px`;
+      spark.style.top = `${rect.top}px`;
+      spark.style.transition = 'all 0.6s cubic-bezier(0.2, 0.9, 0.3, 1)';
+      document.body.appendChild(spark);
+      requestAnimationFrame(() => {
+        spark.style.transform = `translate(${(Math.random() - 0.5) * 30}px, -35px) scale(1.4)`;
+        spark.style.opacity = '0';
+      });
+      setTimeout(() => spark.remove(), 600);
+    });
+  });
+
+  const toolbeltCards = document.querySelectorAll('.toolbelt-card');
+  toolbeltCards.forEach((card) => {
+    card.addEventListener('click', () => {
+      const soundKey = card.getAttribute('data-sound') || 'C5';
+      const freq = nurseryAudio.NOTES[soundKey] || 523.25;
+      nurseryAudio.playBell(freq, null, 0.9);
+      setTimeout(() => {
+        nurseryAudio.playBell(freq * 1.5, null, 0.45);
+      }, 140);
+    });
+  });
+
+  // Story Narration with Speech Synthesis
+  const storyNarrateBtn = document.getElementById('story-narrate-btn');
+  const storyNarrateIcon = document.getElementById('story-narrate-icon');
+  const storyNarrateText = document.getElementById('story-narrate-text');
+  let isStoryNarrating = false;
+
+  if (storyNarrateBtn) {
+    storyNarrateBtn.addEventListener('click', () => {
+      if (!('speechSynthesis' in window)) {
+        nurseryAudio.playPipGiggle();
+        alert('Pip says: Speech synthesis is not supported in this browser, but the lullaby bells are playing for you! ✨');
+        return;
+      }
+
+      if (isStoryNarrating) {
+        window.speechSynthesis.cancel();
+        isStoryNarrating = false;
+        if (storyNarrateIcon) storyNarrateIcon.textContent = '🔊';
+        if (storyNarrateText) storyNarrateText.textContent = 'Read Story Aloud';
+        storyNarrateBtn.classList.remove('ring-2', 'ring-pink-500', 'animate-pulse');
+        return;
+      }
+
+      window.speechSynthesis.cancel();
+      nurseryAudio.playBell(nurseryAudio.NOTES.C5, null, 0.85);
+      setTimeout(() => nurseryAudio.playBell(nurseryAudio.NOTES.E5, null, 0.85), 180);
+
+      const storyText =
+        'Why Did Pip Build This Nursery? ' +
+        'One twilight in Somnia, Pip peered through his starlight telescope down at Earth. ' +
+        'In the quiet nurseries below, little babies were crying in the dark. The silence felt too loud, the shadows seemed scary, and exhausted parents were pacing the floor at two in the morning. ' +
+        'Pip hated silence and could not bear to see anyone cry. So he rolled up his nightgown sleeves and engineered this enchanted haven to turn bedtime into a peaceful, giggle-filled adventure for both babies and parents. ' +
+        'Pip reminds us: No baby should ever be afraid of the quiet, and no tired parent should have to walk the hallway alone!';
+
+      const utterance = new SpeechSynthesisUtterance(storyText);
+      utterance.pitch = 1.15;
+      utterance.rate = 0.88;
+
+      const voices = window.speechSynthesis.getVoices();
+      const friendlyVoice = voices.find(
+        (v) =>
+          (v.name.includes('Natural') ||
+            v.name.includes('Google') ||
+            v.name.includes('Samantha') ||
+            v.lang.startsWith('en')) &&
+          !v.name.includes('David')
+      );
+      if (friendlyVoice) utterance.voice = friendlyVoice;
+
+      utterance.onstart = () => {
+        isStoryNarrating = true;
+        if (storyNarrateIcon) storyNarrateIcon.textContent = '⏸️';
+        if (storyNarrateText) storyNarrateText.textContent = 'Pause Reading';
+        storyNarrateBtn.classList.add('ring-2', 'ring-pink-500', 'animate-pulse');
+      };
+
+      utterance.onend = () => {
+        isStoryNarrating = false;
+        if (storyNarrateIcon) storyNarrateIcon.textContent = '🔊';
+        if (storyNarrateText) storyNarrateText.textContent = 'Read Story Aloud';
+        storyNarrateBtn.classList.remove('ring-2', 'ring-pink-500', 'animate-pulse');
+        nurseryAudio.playPipGiggle();
+      };
+
+      utterance.onerror = () => {
+        isStoryNarrating = false;
+        if (storyNarrateIcon) storyNarrateIcon.textContent = '🔊';
+        if (storyNarrateText) storyNarrateText.textContent = 'Read Story Aloud';
+        storyNarrateBtn.classList.remove('ring-2', 'ring-pink-500', 'animate-pulse');
+      };
+
+      window.speechSynthesis.speak(utterance);
+    });
+  }
+
+  // Baby Sleep Chime Demo Button
+  const babyChimeBtn = document.getElementById('btn-demo-baby-chime');
+  if (babyChimeBtn) {
+    babyChimeBtn.addEventListener('click', () => {
+      const notes = ['C4', 'E4', 'G4', 'C5'];
+      notes.forEach((note, i) => {
+        setTimeout(() => {
+          nurseryAudio.playBell(nurseryAudio.NOTES[note], null, 0.9);
+        }, i * 220);
+      });
+
+      const rect = babyChimeBtn.getBoundingClientRect();
+      for (let i = 0; i < 5; i++) {
+        const star = document.createElement('span');
+        star.textContent = ['👶', '✨', '🍼', '💖', '⭐'][i];
+        star.className = 'fixed pointer-events-none text-lg z-50 select-none';
+        star.style.left = `${rect.left + rect.width / 2 + (Math.random() - 0.5) * 50}px`;
+        star.style.top = `${rect.top}px`;
+        star.style.transition = 'all 0.8s cubic-bezier(0.2, 0.9, 0.3, 1)';
+        document.body.appendChild(star);
+
+        requestAnimationFrame(() => {
+          star.style.transform = `translate(${(Math.random() - 0.5) * 50}px, -${40 + Math.random() * 30}px) scale(1.3)`;
+          star.style.opacity = '0';
+        });
+
+        setTimeout(() => star.remove(), 800);
+      }
+    });
+  }
+
+  // Parent Calming Rain Demo Button
+  const parentRainBtn = document.getElementById('btn-demo-parent-rain');
+  const parentRainLabel = document.getElementById('parent-rain-btn-label');
+  let isParentRainPlaying = false;
+  if (parentRainBtn) {
+    parentRainBtn.addEventListener('click', () => {
+      isParentRainPlaying = !isParentRainPlaying;
+      nurseryAudio.toggleRain(isParentRainPlaying);
+      if (parentRainLabel) {
+        parentRainLabel.textContent = isParentRainPlaying ? 'Stop Calming Rain 🌧️' : 'Sample Calming Rain';
+      }
+      parentRainBtn.classList.toggle('ring-2', isParentRainPlaying);
+      parentRainBtn.classList.toggle('ring-amber-500', isParentRainPlaying);
+      parentRainBtn.classList.toggle('bg-amber-500', isParentRainPlaying);
+      parentRainBtn.classList.toggle('text-white', isParentRainPlaying);
+    });
+  }
+
+  // Sprinkle Dream Dust Button
+  const aboutStardustBtn = document.getElementById('about-stardust-btn');
+  if (aboutStardustBtn) {
+    aboutStardustBtn.addEventListener('click', () => {
+      nurseryAudio.playPipGiggle();
+      const storyCard = document.getElementById('story-behind-card') || aboutStardustBtn;
+      const rect = storyCard.getBoundingClientRect();
+      for (let i = 0; i < 16; i++) {
+        const star = document.createElement('span');
+        star.textContent = ['✨', '⭐', '🌟', '🌙', '💫', '💖'][Math.floor(Math.random() * 6)];
+        star.className = 'fixed pointer-events-none text-base z-50 select-none';
+        star.style.left = `${rect.left + Math.random() * rect.width}px`;
+        star.style.top = `${rect.top + Math.random() * rect.height}px`;
+        star.style.transition = 'all 1.2s cubic-bezier(0.2, 0.9, 0.3, 1)';
+        document.body.appendChild(star);
+
+        requestAnimationFrame(() => {
+          star.style.transform = `translate(${(Math.random() - 0.5) * 100}px, -${50 + Math.random() * 60}px) scale(${1 + Math.random() * 0.8})`;
+          star.style.opacity = '0';
+        });
+
+        setTimeout(() => star.remove(), 1200);
+      }
+    });
   }
 
   // 14. Illuminated Statement Scroll Reader

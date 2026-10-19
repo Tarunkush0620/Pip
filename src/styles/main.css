@@ -118,17 +118,39 @@
   }
 }
 
-/* Hide scrollbar completely for clean edge-to-edge aesthetics */
+/* Custom elegant scrollbar */
 html,
 body {
-  scrollbar-width: none; /* Firefox */
-  -ms-overflow-style: none; /* IE/Edge */
+  scrollbar-width: thin;
+  scrollbar-color: rgba(230, 42, 107, 0.45) transparent;
 }
 
 ::-webkit-scrollbar {
-  display: none !important;
-  width: 0 !important;
-  height: 0 !important;
+  width: 9px;
+  height: 9px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background: rgba(230, 42, 107, 0.35);
+  border-radius: 9999px;
+  border: 2px solid transparent;
+  background-clip: padding-box;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(230, 42, 107, 0.7);
+}
+
+body.midnight-mode ::-webkit-scrollbar-thumb {
+  background: rgba(200, 160, 240, 0.45);
+}
+
+body.midnight-mode ::-webkit-scrollbar-thumb:hover {
+  background: rgba(200, 160, 240, 0.8);
 }
 
 /* Lock scrolling while intro is active */
@@ -2913,7 +2935,6 @@ body.midnight-mode .lullaby-track-btn {
    Smooth Scrolling & GPU Acceleration Engine
    ========================================================================== */
 html {
-  scroll-behavior: smooth;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
 }
@@ -2935,30 +2956,5 @@ html {
 .showcase-card {
   transform: translateZ(0);
   backface-visibility: hidden;
-}
-
-/* High-Performance Momentum Scroll:
-   During active scrolling, suspend expensive GPU multi-pass backdrop blurring
-   to guarantee a silky 60-120fps frame rate. Once scroll stops, blur smoothly returns. */
-body.is-scrolling * {
-  pointer-events: none !important;
-}
-
-body.is-scrolling .glass-panel,
-body.is-scrolling .nursery-storybook-card,
-body.is-scrolling .active-landmark-card,
-body.is-scrolling #dream-result-card,
-body.is-scrolling .toolbelt-card,
-body.is-scrolling [class*="backdrop-blur"] {
-  backdrop-filter: none !important;
-  -webkit-backdrop-filter: none !important;
-}
-
-/* Viewport content virtualization for offscreen massive sections */
-#lore,
-#growth,
-#whispers {
-  content-visibility: auto;
-  contain-intrinsic-size: 800px;
 }
 

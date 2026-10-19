@@ -10,6 +10,15 @@ export function initIntroController() {
 
   if (!overlay || !video) return;
 
+  // If user already saw intro in this session or navigated via hash anchor, bypass intro
+  const hasSeenIntro = sessionStorage.getItem('pip_intro_seen') === 'true';
+  const hasHash = window.location.hash && window.location.hash.length > 1;
+  if (hasSeenIntro || hasHash) {
+    overlay.style.display = 'none';
+    try { video.pause(); } catch (e) {}
+    return;
+  }
+
   // Lock scrolling while intro is active
   document.documentElement.classList.add('intro-active');
   document.body.classList.add('intro-active');
@@ -32,10 +41,32 @@ export function initIntroController() {
   overlay.addEventListener('pointermove', showHud);
   overlay.addEventListener('touchstart', showHud, { passive: true });
 
+  // Any mouse wheel down or touch swipe immediately enters the dream portfolio
+  window.addEventListener('wheel', (e) => {
+    if (!isIntroFinished && e.deltaY > 15) {
+      finishIntro();
+    }
+  }, { passive: true });
+
+  let touchStartY = 0;
+  window.addEventListener('touchstart', (e) => {
+    touchStartY = e.touches[0].clientY;
+  }, { passive: true });
+  window.addEventListener('touchend', (e) => {
+    if (!isIntroFinished && touchStartY - e.changedTouches[0].clientY > 30) {
+      finishIntro();
+    }
+  }, { passive: true });
+
   function finishIntro() {
     if (isIntroFinished) return;
     isIntroFinished = true;
     clearTimeout(hudTimeout);
+    sessionStorage.setItem('pip_intro_seen', 'true');
+
+    // Immediately unlock document scrolling so the user can scroll without any delay!
+    document.documentElement.classList.remove('intro-active');
+    document.body.classList.remove('intro-active');
 
     // Play a gentle welcome chime entering the dream world
     try {
@@ -52,15 +83,13 @@ export function initIntroController() {
         video.pause();
       } catch (e) { }
       overlay.style.display = 'none';
-      document.documentElement.classList.remove('intro-active');
-      document.body.classList.remove('intro-active');
 
       // Resume or trigger background sky videos
       const vDawn = document.getElementById('bg-video-dawn');
       const vMidnight = document.getElementById('bg-video-midnight');
       if (vDawn && vDawn.paused) vDawn.play().catch(() => { });
       if (vMidnight && vMidnight.paused) vMidnight.play().catch(() => { });
-    }, 1100);
+    }, 500);
   }
 
   // Attempt Autoplay with Sound

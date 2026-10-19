@@ -682,18 +682,6 @@ function initInteractions() {
     checkWords();
   }
 
-  // 14.5 High-Performance Momentum Scroll Engine (Temporarily suspends heavy blur passes during scroll)
-  let scrollDebounceTimer = null;
-  window.addEventListener('scroll', () => {
-    if (!document.body.classList.contains('is-scrolling')) {
-      document.body.classList.add('is-scrolling');
-    }
-    clearTimeout(scrollDebounceTimer);
-    scrollDebounceTimer = setTimeout(() => {
-      document.body.classList.remove('is-scrolling');
-    }, 120);
-  }, { passive: true });
-
   // 15. Sleeping Pip Bedtime Vignette Interaction
   const sleepingPip = document.getElementById('sleeping-pip-card');
   const pipStatus = document.getElementById('sleeping-pip-status');
@@ -770,6 +758,31 @@ function initInteractions() {
       countdownEl.textContent = `${h}:${m}:${s}`;
     }, 1000);
   }
+
+  // 18. Smooth programmatic scroll for all navigation links with navbar offset
+  document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
+    anchor.addEventListener('click', (e) => {
+      const hash = anchor.getAttribute('href');
+      if (!hash || hash === '#' || hash === '#top') {
+        e.preventDefault();
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+        return;
+      }
+      try {
+        const target = document.querySelector(hash);
+        if (target) {
+          e.preventDefault();
+          const navOffset = 85;
+          const targetPos = target.getBoundingClientRect().top + window.scrollY - navOffset;
+          window.scrollTo({
+            top: Math.max(0, targetPos),
+            behavior: 'smooth'
+          });
+          history.pushState(null, null, hash);
+        }
+      } catch (err) {}
+    });
+  });
 }
 
 // Launch application on DOM ready with strict single-execution guard

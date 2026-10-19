@@ -2909,3 +2909,56 @@ body.midnight-mode .lullaby-track-btn {
 .viz-bar-active:nth-child(4) { animation-delay: 0.1s !important; }
 .viz-bar-active:nth-child(5) { animation-delay: 0.25s !important; }
 
+/* ==========================================================================
+   Smooth Scrolling & GPU Acceleration Engine
+   ========================================================================== */
+html {
+  scroll-behavior: smooth;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* Hardware accelerated background layers */
+#video-sky-container,
+#three-canvas-container,
+#atmospheric-sky-container,
+#stardust-cursor-canvas {
+  transform: translateZ(0);
+  will-change: transform;
+  backface-visibility: hidden;
+  pointer-events: none;
+}
+
+/* GPU promotion for heavy card panels */
+.glass-panel,
+.nursery-storybook-card,
+.showcase-card {
+  transform: translateZ(0);
+  backface-visibility: hidden;
+}
+
+/* High-Performance Momentum Scroll:
+   During active scrolling, suspend expensive GPU multi-pass backdrop blurring
+   to guarantee a silky 60-120fps frame rate. Once scroll stops, blur smoothly returns. */
+body.is-scrolling * {
+  pointer-events: none !important;
+}
+
+body.is-scrolling .glass-panel,
+body.is-scrolling .nursery-storybook-card,
+body.is-scrolling .active-landmark-card,
+body.is-scrolling #dream-result-card,
+body.is-scrolling .toolbelt-card,
+body.is-scrolling [class*="backdrop-blur"] {
+  backdrop-filter: none !important;
+  -webkit-backdrop-filter: none !important;
+}
+
+/* Viewport content virtualization for offscreen massive sections */
+#lore,
+#growth,
+#whispers {
+  content-visibility: auto;
+  contain-intrinsic-size: 800px;
+}
+

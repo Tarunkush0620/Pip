@@ -13,7 +13,7 @@ class AtmosphericEngine {
     this.ctx = this.canvas.getContext('2d');
     this.width = window.innerWidth;
     this.height = window.innerHeight;
-    this.dpr = Math.min(window.devicePixelRatio || 1, 2);
+    this.dpr = Math.min(window.devicePixelRatio || 1, 1.5);
 
     this.skyPhase = 'dawn'; // 'dawn', 'twilight', 'midnight'
     this.meteors = [];
@@ -29,6 +29,18 @@ class AtmosphericEngine {
     this.animate();
 
     window.addEventListener('resize', () => this.resize(), { passive: true });
+    document.addEventListener('visibilitychange', () => {
+      if (document.hidden) {
+        if (this.animId) {
+          cancelAnimationFrame(this.animId);
+          this.animId = null;
+        }
+      } else {
+        if (!this.animId) {
+          this.animate();
+        }
+      }
+    });
   }
 
   initCanvas() {
@@ -38,7 +50,7 @@ class AtmosphericEngine {
   resize() {
     this.width = window.innerWidth;
     this.height = window.innerHeight;
-    this.dpr = Math.min(window.devicePixelRatio || 1, 2);
+    this.dpr = Math.min(window.devicePixelRatio || 1, 1.5);
     this.canvas.width = this.width * this.dpr;
     this.canvas.height = this.height * this.dpr;
     this.canvas.style.width = `${this.width}px`;
@@ -202,8 +214,6 @@ class AtmosphericEngine {
       ctx.beginPath();
       ctx.arc(dust.x, dust.y, dust.r, 0, Math.PI * 2);
       ctx.fillStyle = dust.color;
-      ctx.shadowColor = dust.color;
-      ctx.shadowBlur = 4;
       ctx.globalAlpha = Math.max(0, Math.min(1, currentAlpha));
       ctx.fill();
     });
@@ -298,6 +308,7 @@ class AtmosphericEngine {
 
   animate() {
     this.animId = requestAnimationFrame(() => this.animate());
+    if (document.hidden) return;
 
     this.ctx.clearRect(0, 0, this.width, this.height);
 

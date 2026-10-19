@@ -644,11 +644,15 @@ function initInteractions() {
     });
   }
 
-  // 14. Illuminated Statement Scroll Reader
+  // 14. Illuminated Statement Scroll Reader (Throttled with IntersectionObserver)
   const stmt = document.getElementById('stmt');
   if (stmt) {
     const words = stmt.querySelectorAll('.statement-word');
+    let stmtInView = true;
+    let stmtTicking = false;
+
     function checkWords() {
+      if (!stmtInView) return;
       const rect = stmt.getBoundingClientRect();
       const triggerY = window.innerHeight * 0.75;
       const progress = Math.max(0, Math.min(1, (triggerY - rect.top) / (rect.height + window.innerHeight * 0.3)));
@@ -657,9 +661,38 @@ function initInteractions() {
         w.classList.toggle('is-active', idx <= count);
       });
     }
-    window.addEventListener('scroll', checkWords, { passive: true });
+
+    if ('IntersectionObserver' in window) {
+      const stmtObserver = new IntersectionObserver((entries) => {
+        stmtInView = entries[0].isIntersecting;
+        if (stmtInView) checkWords();
+      }, { rootMargin: '200px 0px 200px 0px' });
+      stmtObserver.observe(stmt);
+    }
+
+    window.addEventListener('scroll', () => {
+      if (stmtInView && !stmtTicking) {
+        requestAnimationFrame(() => {
+          checkWords();
+          stmtTicking = false;
+        });
+        stmtTicking = true;
+      }
+    }, { passive: true });
     checkWords();
   }
+
+  // 14.5 High-Performance Momentum Scroll Engine (Temporarily suspends heavy blur passes during scroll)
+  let scrollDebounceTimer = null;
+  window.addEventListener('scroll', () => {
+    if (!document.body.classList.contains('is-scrolling')) {
+      document.body.classList.add('is-scrolling');
+    }
+    clearTimeout(scrollDebounceTimer);
+    scrollDebounceTimer = setTimeout(() => {
+      document.body.classList.remove('is-scrolling');
+    }, 120);
+  }, { passive: true });
 
   // 15. Sleeping Pip Bedtime Vignette Interaction
   const sleepingPip = document.getElementById('sleeping-pip-card');

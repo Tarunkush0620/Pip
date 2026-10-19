@@ -354,7 +354,7 @@ export function initPip3DCharacter(containerId = 'pip-3d-scene-host') {
     camera.aspect = w / h;
     camera.updateProjectionMatrix();
     renderer.setSize(w, h);
-    renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+    renderer.setPixelRatio(Math.min(window.devicePixelRatio || 1, 1.5));
   }
 
   window.addEventListener('resize', onResize);
@@ -391,6 +391,7 @@ export function initPip3DCharacter(containerId = 'pip-3d-scene-host') {
   function animate() {
     if (!isMounted) return;
     requestAnimationFrame(animate);
+    if (document.hidden) return;
 
     const t = clock.getElapsedTime();
     const p = parts;

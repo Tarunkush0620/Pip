@@ -33,6 +33,9 @@ export function initHorizontalScroll() {
   let cachedSectionTop = 0;
   let cachedTotalDistance = 0;
   let cardOffsets = [];
+  let cachedCardGeometries = [];
+  let isSectionInView = true;
+  let isRafRunning = false;
 
   // Reset any browser auto-scrolling on trackWrapper
   trackWrapper.scrollLeft = 0;
@@ -70,10 +73,19 @@ export function initHorizontalScroll() {
 
     const wrapperWidth = trackWrapper.clientWidth || window.innerWidth;
 
+    // Cache exact geometry to avoid layout thrashing during render loop
+    cachedCardGeometries = cards.map((card) => {
+      const offsetLeft = card.offsetLeft;
+      const offsetWidth = card.offsetWidth;
+      return {
+        cardCenter: offsetLeft + offsetWidth / 2,
+        widthNorm: offsetWidth + 44
+      };
+    });
+
     // Calculate exact centering offset for each card
-    cardOffsets = cards.map((card) => {
-      const cardCenter = card.offsetLeft + card.offsetWidth / 2;
-      return (wrapperWidth / 2) - cardCenter;
+    cardOffsets = cachedCardGeometries.map((geom) => {
+      return (wrapperWidth / 2) - geom.cardCenter;
     });
 
     // Immediately compute target for current scroll
@@ -253,10 +265,15 @@ export function initHorizontalScroll() {
     }
   }, { passive: true });
 
-  // Continuous RAF loop with smooth inertia lerp & 3D Spatial Gallery Perspective
+  // Continuous RAF loop with smooth inertia lerp & cached geometry
   const progressBar = document.getElementById('showcase-progress-bar');
 
   function renderLoop() {
+    if (!isSectionInView) {
+      isRafRunning = false;
+      return;
+    }
+
     if (trackWrapper.scrollLeft !== 0) {
       trackWrapper.scrollLeft = 0;
     }
@@ -271,22 +288,20 @@ export function initHorizontalScroll() {
       track.style.transform = `translate3d(${currentX.toFixed(2)}px, 0, 0)`;
     }
 
-    // Dynamic 3D Spatial Perspective on each card
+    // Dynamic 3D Spatial Perspective on each card using cached geometries (zero reflows!)
     const wrapperWidth = trackWrapper.clientWidth || window.innerWidth;
     const screenCenter = wrapperWidth / 2;
 
-    cards.forEach((card) => {
-      const cardCenterInWrapper = currentX + card.offsetLeft + card.offsetWidth / 2;
+    cards.forEach((card, idx) => {
+      const geom = cachedCardGeometries[idx];
+      if (!geom) return;
+
+      const cardCenterInWrapper = currentX + geom.cardCenter;
       const distFromCenter = cardCenterInWrapper - screenCenter;
-      const normalizedDist = distFromCenter / (card.offsetWidth + 44);
+      const normalizedDist = distFromCenter / geom.widthNorm;
 
-      // Scale: 1.0 at center, down to 0.93 when 1 card away
       const scale = Math.max(0.92, 1 - Math.abs(normalizedDist) * 0.08);
-
-      // Opacity: 1.0 at center, down to 0.70 when away
       const opacity = Math.max(0.70, 1 - Math.abs(normalizedDist) * 0.30);
-
-      // Subtle 3D Y-tilt: tilts toward screen center like a luxury gallery
       const rotateY = Math.max(-5, Math.min(5, -normalizedDist * 4));
 
       card.style.transform = `scale(${scale.toFixed(3)}) rotateY(${rotateY.toFixed(2)}deg)`;
@@ -300,12 +315,38 @@ export function initHorizontalScroll() {
       progressBar.style.width = `${Math.min(100, Math.max(4, Math.round(progress * 100)))}%`;
     }
 
-    requestAnimationFrame(renderLoop);
+    // If still moving, continue RAF; else pause loop until next movement
+    if (Math.abs(diff) > 0.05) {
+      requestAnimationFrame(renderLoop);
+    } else {
+      isRafRunning = false;
+    }
   }
 
-  // Window scroll & resize listeners
+  // Observe visibility of showcase to completely pause loop when off-screen
+  if ('IntersectionObserver' in window) {
+    const sectionObserver = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        isSectionInView = entry.isIntersecting;
+        if (isSectionInView && !isRafRunning) {
+          isRafRunning = true;
+          requestAnimationFrame(renderLoop);
+        }
+      });
+    }, { rootMargin: '300px 0px 300px 0px' });
+    sectionObserver.observe(section);
+  }
+
+  // Throttled Window scroll & resize listeners
+  let scrollTicking = false;
   window.addEventListener('scroll', () => {
-    updateTargetFromScroll(false);
+    if (!scrollTicking) {
+      requestAnimationFrame(() => {
+        updateTargetFromScroll(false);
+        scrollTicking = false;
+      });
+      scrollTicking = true;
+    }
   }, { passive: true });
 
   window.addEventListener('resize', () => {

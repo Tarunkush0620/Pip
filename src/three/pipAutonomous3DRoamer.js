@@ -119,7 +119,7 @@ export class PipAutonomous3DRoamer {
       powerPreference: 'high-performance'
     });
     this.renderer.setSize(w, h);
-    this.renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+    this.renderer.setPixelRatio(Math.min(window.devicePixelRatio || 1, 1.5));
     this.renderer.outputColorSpace = THREE.SRGBColorSpace;
     this.renderer.toneMapping = THREE.ACESFilmicToneMapping;
     this.renderer.toneMappingExposure = 1.15;
@@ -667,6 +667,7 @@ export class PipAutonomous3DRoamer {
     const animate = () => {
       if (!this.isMounted) return;
       this.animFrameId = requestAnimationFrame(animate);
+      if (document.hidden) return;
 
       const delta = this.clock.getDelta();
       const t = this.clock.getElapsedTime();

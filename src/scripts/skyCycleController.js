@@ -180,6 +180,18 @@ class SkyCycleController {
 
     // Card 2 Lantern Integration
     this.bindLanternCard();
+
+    // Pause videos when document is hidden to save battery & GPU
+    document.addEventListener('visibilitychange', () => {
+      const videoDawn = document.getElementById('bg-video-dawn');
+      const videoMidnight = document.getElementById('bg-video-midnight');
+      if (document.hidden) {
+        if (videoDawn) videoDawn.pause();
+        if (videoMidnight) videoMidnight.pause();
+      } else {
+        this.applyPhase(this.currentPhase, false);
+      }
+    });
   }
 
   bindLanternCard() {
@@ -285,6 +297,7 @@ class SkyCycleController {
         videoDawn.style.opacity = '1';
         videoMidnight.style.opacity = '0';
         if (videoDawn.paused) videoDawn.play().catch(() => {});
+        videoMidnight.pause();
       } else if (phaseName === 'twilight') {
         videoDawn.style.opacity = '0.35';
         videoMidnight.style.opacity = '0.85';
@@ -293,6 +306,7 @@ class SkyCycleController {
       } else if (phaseName === 'midnight') {
         videoDawn.style.opacity = '0';
         videoMidnight.style.opacity = '1';
+        videoDawn.pause();
         if (videoMidnight.paused) videoMidnight.play().catch(() => {});
       }
     }

@@ -36,7 +36,7 @@ class CelestialScene {
       powerPreference: 'high-performance'
     });
     this.renderer.setSize(window.innerWidth, window.innerHeight);
-    this.renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+    this.renderer.setPixelRatio(Math.min(window.devicePixelRatio || 1, 1.5));
     this.renderer.outputColorSpace = THREE.SRGBColorSpace;
     this.container.appendChild(this.renderer.domElement);
 
@@ -200,20 +200,38 @@ class CelestialScene {
   }
 
   setupEvents() {
-    window.addEventListener('resize', () => {
+    let cachedMaxScroll = 1;
+    const updateMetrics = () => {
       this.camera.aspect = window.innerWidth / window.innerHeight;
       this.camera.updateProjectionMatrix();
       this.renderer.setSize(window.innerWidth, window.innerHeight);
-    }, { passive: true });
+      cachedMaxScroll = Math.max(1, document.documentElement.scrollHeight - window.innerHeight);
+    };
+    updateMetrics();
 
+    window.addEventListener('resize', updateMetrics, { passive: true });
+
+    let pointerTicking = false;
     window.addEventListener('pointermove', (e) => {
-      this.targetMouseX = (e.clientX / window.innerWidth - 0.5) * 2;
-      this.targetMouseY = (e.clientY / window.innerHeight - 0.5) * 2;
+      if (!pointerTicking) {
+        requestAnimationFrame(() => {
+          this.targetMouseX = (e.clientX / window.innerWidth - 0.5) * 2;
+          this.targetMouseY = (e.clientY / window.innerHeight - 0.5) * 2;
+          pointerTicking = false;
+        });
+        pointerTicking = true;
+      }
     }, { passive: true });
 
+    let scrollTicking = false;
     window.addEventListener('scroll', () => {
-      const maxScroll = document.documentElement.scrollHeight - window.innerHeight;
-      this.scrollProgress = maxScroll > 0 ? window.scrollY / maxScroll : 0;
+      if (!scrollTicking) {
+        requestAnimationFrame(() => {
+          this.scrollProgress = window.scrollY / cachedMaxScroll;
+          scrollTicking = false;
+        });
+        scrollTicking = true;
+      }
     }, { passive: true });
 
     document.addEventListener('visibilitychange', () => {

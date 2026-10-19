@@ -62,12 +62,25 @@ export class LivingArtEngine {
     let nextShootingStar = 160 + Math.random() * 200;
     let animId = null;
     let isRunning = true;
+    let inView = true;
+
+    const panel = containerEl.closest('.world-content-panel');
+    const loreEl = document.getElementById('lore') || containerEl;
+    if ('IntersectionObserver' in window) {
+      const io = new IntersectionObserver(([entry]) => {
+        inView = entry.isIntersecting;
+      }, { rootMargin: '100px' });
+      io.observe(loreEl);
+    }
 
     // Fast 60/120 FPS Loop without layout thrashing
     const render = () => {
       if (!isRunning) return;
+      if (document.hidden || !inView) {
+        animId = requestAnimationFrame(render);
+        return;
+      }
 
-      const panel = containerEl.closest('.world-content-panel');
       if (panel && !panel.classList.contains('hidden')) {
         ctx.clearRect(0, 0, width, height);
         frameCount++;

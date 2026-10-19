@@ -98,157 +98,211 @@ export function renderAbout() {
             </div>
           </div>
 
-          <!-- The Story Behind This Portfolio: Built for Babies & Parents -->
-          <div id="story-behind-card" class="story-behind-card glass-panel rounded-3xl p-6 sm:p-8 bg-white/95 dark:bg-[#180A26]/90 border-2 border-white/95 dark:border-white/15 shadow-2xl backdrop-blur-2xl relative overflow-hidden transition-all duration-300">
+          <!-- The Bedtime Storybook Spread: Built for Babies & Parents -->
+          <div id="story-behind-card" class="nursery-storybook-card p-6 sm:p-9 md:p-10 transition-all duration-300">
             
-            <!-- Ambient Dream Light Glows -->
-            <div class="absolute -top-14 -right-14 w-48 h-48 bg-gradient-to-br from-pink-400/25 via-rose-300/15 to-transparent rounded-full blur-2xl pointer-events-none"></div>
-            <div class="absolute -bottom-14 -left-14 w-48 h-48 bg-gradient-to-tr from-amber-400/25 via-yellow-200/15 to-transparent rounded-full blur-2xl pointer-events-none"></div>
+            <!-- Dreamy Ambient Floating Lights -->
+            <div class="absolute -top-20 -right-20 w-60 h-60 bg-gradient-to-br from-pink-300/35 via-rose-200/25 to-transparent rounded-full blur-3xl pointer-events-none"></div>
+            <div class="absolute -bottom-20 -left-20 w-60 h-60 bg-gradient-to-tr from-amber-300/35 via-yellow-100/20 to-transparent rounded-full blur-3xl pointer-events-none"></div>
 
             <div class="relative z-10">
-              <!-- Header Bar with Read Aloud Voice Button -->
-              <div class="flex flex-wrap items-center justify-between gap-3 mb-3">
-                <div class="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-pink-100/90 dark:bg-pink-950/60 border border-pink-300/60 dark:border-pink-500/30 text-xs font-bold uppercase tracking-wider text-berry dark:text-pink-300 shadow-xs">
-                  <span>📖</span> <span>The Bedtime Story Behind This Nursery</span>
+              
+              <!-- Top Nursery Chapter Header & Audio Story Bar -->
+              <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3 pb-5 border-b border-pink-200/40 dark:border-white/10 mb-6">
+                <div class="flex items-center gap-2.5">
+                  <span class="w-9 h-9 rounded-full bg-pink-100 dark:bg-pink-900/50 flex items-center justify-center text-lg flex-none shadow-xs">🌙</span>
+                  <div>
+                    <span class="text-[11px] font-black uppercase tracking-widest text-berry/80 dark:text-pink-300">Nursery Storybook · Chapter I</span>
+                    <p class="text-xs text-ink/60 dark:text-cream/60">An enchanted bedtime origin tale</p>
+                  </div>
                 </div>
-                
+
+                <!-- Pillowy Audio Player Button -->
                 <button 
                   id="story-narrate-btn" 
                   type="button" 
-                  class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full glass-panel bg-white/80 dark:bg-black/40 border border-berry/30 dark:border-white/20 hover:border-berry text-berry dark:text-moon font-display font-bold text-xs shadow-xs hover:shadow-md hover:scale-105 active:scale-95 transition-all cursor-pointer"
+                  class="inline-flex items-center gap-2.5 px-5 py-2.5 rounded-full bg-gradient-to-r from-pink-500 to-rose-400 text-white font-display font-bold text-xs shadow-md shadow-pink-500/25 hover:shadow-lg hover:scale-105 active:scale-95 transition-all cursor-pointer self-start sm:self-auto"
                   aria-label="Listen to Pip's bedtime story read aloud"
-                  title="Listen to Pip's bedtime story read aloud"
                 >
-                  <span id="story-narrate-icon">🔊</span>
-                  <span id="story-narrate-text">Read Story Aloud</span>
+                  <span id="story-narrate-icon" class="text-sm">🔊</span>
+                  <span id="story-narrate-text">Listen to Bedtime Story</span>
+                  <span class="flex items-center gap-0.5 ml-1 opacity-80">
+                    <span class="w-1 h-2.5 bg-white rounded-full animate-bounce"></span>
+                    <span class="w-1 h-4 bg-white rounded-full animate-bounce [animation-delay:0.15s]"></span>
+                    <span class="w-1 h-2 bg-white rounded-full animate-bounce [animation-delay:0.3s]"></span>
+                  </span>
                 </button>
               </div>
 
-              <h3 class="font-display text-2xl sm:text-3xl font-extrabold text-berry dark:text-moon leading-tight mb-2">
-                Why Did Pip Build This Nursery?
-              </h3>
-              
-              <p class="text-xs sm:text-sm font-semibold text-berry/80 dark:text-pink-300/90 mb-4 flex items-center gap-1.5">
-                <span>✦</span>
-                <span>Born from 2:00 AM nursery tears · Engineered with starlight & pediatric care</span>
-              </p>
+              <!-- Title & Story Narrative -->
+              <div class="mb-7">
+                <h3 class="font-display text-3xl sm:text-4xl md:text-[2.65rem] font-black text-berry dark:text-moon leading-tight tracking-tight mb-3">
+                  Why Pip Built This Nursery 🧸
+                </h3>
+                
+                <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-amber-100/90 dark:bg-amber-950/60 border border-amber-300/60 dark:border-amber-500/30 text-xs font-bold text-amber-950 dark:text-amber-200 mb-5 shadow-2xs">
+                  <span>✨</span> <span>Born from 2:00 AM nursery tears · Crafted with starlight & pediatric care</span>
+                </div>
 
-              <p class="text-sm sm:text-base text-ink/90 dark:text-cream/90 leading-relaxed font-normal mb-5">
-                One twilight in Somnia, Pip peered through his starlight telescope down at Earth. In the quiet nurseries below, <strong class="text-berry dark:text-pink-300 font-bold">little babies were crying in the dark</strong>—the silence felt too loud, the shadows seemed scary, and exhausted mothers and fathers were pacing the floor at 2:00 AM. Pip hated silence and couldn’t bear to see anyone cry. So he rolled up his nightgown sleeves and engineered this portfolio to turn bedtime into an enchanted haven for both babies and parents.
-              </p>
+                <!-- Illustrated Story Passages -->
+                <div class="space-y-4 text-sm sm:text-base text-ink/90 dark:text-cream/90 leading-relaxed font-normal">
+                  <p>
+                    <span class="nursery-drop-cap">O</span>ne quiet twilight in Somnia, Pip peered through his starlight telescope down at Earth. In the darkened nurseries below, <strong>little babies were crying softly in their cribs</strong>—the midnight silence felt too wide, the room shadows felt scary, and loving mothers and fathers were pacing the floor at 2:00 AM with weary eyes and heavy arms.
+                  </p>
+                  <p>
+                    Pip hated cold silence and couldn’t bear to see anyone cry. So he rolled up his nightgown sleeves, gathered moonbeam wool, and engineered this enchanted haven: <strong>a comforting world designed specifically to calm restless little souls and give exhausted parents their breath back.</strong>
+                  </p>
+                </div>
+              </div>
 
-              <!-- Pip's Personal Quote Callout -->
-              <div class="p-4 sm:p-5 rounded-2xl bg-gradient-to-r from-pink-500/10 via-amber-500/10 to-purple-500/10 border-l-4 border-berry dark:border-pink-400 mb-6 flex items-start gap-3.5 shadow-xs">
-                <span class="text-3xl flex-none leading-none select-none">🧸</span>
-                <div>
-                  <blockquote class="italic text-xs sm:text-sm text-ink/90 dark:text-cream/90 font-medium leading-relaxed">
-                    “No baby should ever be afraid of the quiet, and no tired parent should have to walk the hallway all alone. Every dream deserves a warm melody and a peaceful heart.”
-                  </blockquote>
-                  <div class="text-xs font-bold not-italic text-berry dark:text-pink-300 mt-2 flex items-center gap-1.5">
-                    <span>— Pip, Junior Dream Weaver</span>
-                    <span class="text-ink/40 dark:text-cream/40">·</span>
-                    <span class="font-normal text-ink/70 dark:text-cream/70">Somnia Midnight Nursery Chief</span>
+              <!-- Cozy Cloud Lullaby Whisper -->
+              <div class="nursery-cloud-whisper p-5 sm:p-6 mb-8 flex flex-col sm:flex-row items-start sm:items-center gap-4">
+                <div class="w-12 h-12 rounded-2xl bg-white dark:bg-plum-900/60 shadow-sm flex items-center justify-center text-3xl flex-none border border-pink-200/60 dark:border-white/10">
+                  🧸
+                </div>
+                <div class="flex-1">
+                  <p class="font-display italic text-sm sm:text-base text-berry dark:text-pink-200 font-semibold leading-relaxed">
+                    “Babies don’t need loud silence—they need the gentle hum of safety. And parents walking the hallway at 2:00 AM deserve a magical friend to carry the melody.”
+                  </p>
+                  <div class="flex items-center gap-2 mt-2 text-xs font-bold text-ink/70 dark:text-cream/70">
+                    <span class="text-berry dark:text-moon font-extrabold">— Baby Pip</span>
+                    <span>·</span>
+                    <span>Chief Slumber Weaver & Cradle Companion</span>
                   </div>
                 </div>
               </div>
 
-              <!-- Dual Audience Cards -->
-              <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-6">
-                <!-- For Little Babies -->
-                <div class="rounded-2xl p-5 bg-gradient-to-br from-pink-50/95 via-rose-50/80 to-white/95 dark:from-pink-950/60 dark:to-plum-950/50 border-2 border-pink-200/90 dark:border-pink-500/30 shadow-md hover:shadow-lg transition-all duration-300 flex flex-col justify-between">
+              <!-- Dual Sensory Cradles (Babies & Parents) -->
+              <div class="grid grid-cols-1 md:grid-cols-2 gap-5 mb-8">
+                
+                <!-- Cradle 1: For Little Dreamers (Babies) -->
+                <div class="sensory-cradle-baby p-6 flex flex-col justify-between transition-all duration-300">
                   <div>
-                    <div class="flex items-center justify-between gap-2 mb-3">
-                      <div class="flex items-center gap-2">
-                        <span class="text-2xl">👶</span>
-                        <h4 class="font-display font-bold text-base text-berry dark:text-pink-300">For Little Babies</h4>
+                    <!-- Card Header -->
+                    <div class="flex items-center justify-between gap-2 mb-4 pb-3 border-b border-pink-200/50 dark:border-pink-800/40">
+                      <div class="flex items-center gap-2.5">
+                        <span class="text-3xl">👶</span>
+                        <div>
+                          <h4 class="font-display font-black text-lg text-berry dark:text-pink-300 leading-tight">In the Baby’s Cradle</h4>
+                          <p class="text-[11px] font-medium text-pink-700/80 dark:text-pink-300/70">Sensory Calm & Sweet Dreams</p>
+                        </div>
                       </div>
-                      <span class="px-2.5 py-0.5 rounded-full text-[10px] font-bold uppercase tracking-wider bg-pink-100 text-pink-700 dark:bg-pink-900/60 dark:text-pink-200">Ages 0 - 4</span>
+                      <span class="px-3 py-1 rounded-full text-[10px] font-black uppercase tracking-wider bg-pink-200/80 text-pink-800 dark:bg-pink-900 dark:text-pink-200 shadow-2xs">Ages 0 - 4</span>
                     </div>
-                    
-                    <ul class="text-xs text-ink/80 dark:text-cream/80 space-y-2 mb-3 leading-relaxed">
-                      <li class="flex items-start gap-2">
-                        <span class="text-pink-500 flex-none font-bold">✓</span>
-                        <span><strong>432 Hz Solfeggio Bells:</strong> Gentle notes tuned to mimic a mother's resting heart rate.</span>
-                      </li>
-                      <li class="flex items-start gap-2">
-                        <span class="text-pink-500 flex-none font-bold">✓</span>
-                        <span><strong>2700K Amber Glow:</strong> Blue-light-free nightlights that safely preserve melatonin.</span>
-                      </li>
-                      <li class="flex items-start gap-2">
-                        <span class="text-pink-500 flex-none font-bold">✓</span>
-                        <span><strong>Tactile Wooden Toys:</strong> Physics blocks and gentle stars for tired giggles.</span>
-                      </li>
-                    </ul>
+
+                    <!-- Tactile Visual Items -->
+                    <div class="space-y-3 mb-5">
+                      <div class="sensory-toy-card">
+                        <span class="text-2xl p-2 rounded-xl bg-pink-100 dark:bg-pink-900/50 flex-none">🔔</span>
+                        <div>
+                          <h5 class="font-display font-bold text-xs text-berry dark:text-pink-200">432 Hz Music Box Bells</h5>
+                          <p class="text-[11px] text-ink/75 dark:text-cream/75 leading-tight mt-0.5">Warm solfeggio chimes tuned to mimic a mother's resting heart rate.</p>
+                        </div>
+                      </div>
+
+                      <div class="sensory-toy-card">
+                        <span class="text-2xl p-2 rounded-xl bg-amber-100 dark:bg-amber-900/50 flex-none">🌕</span>
+                        <div>
+                          <h5 class="font-display font-bold text-xs text-amber-950 dark:text-amber-200">2700K Melatonin Nightlight</h5>
+                          <p class="text-[11px] text-ink/75 dark:text-cream/75 leading-tight mt-0.5">Gentle zero-blue amber light that preserves natural sleep hormones.</p>
+                        </div>
+                      </div>
+
+                      <div class="sensory-toy-card">
+                        <span class="text-2xl p-2 rounded-xl bg-rose-100 dark:bg-rose-900/50 flex-none">🧸</span>
+                        <div>
+                          <h5 class="font-display font-bold text-xs text-berry dark:text-pink-200">Playful Cloud Blocks</h5>
+                          <p class="text-[11px] text-ink/75 dark:text-cream/75 leading-tight mt-0.5">Interactive wooden blocks with gentle physics for sleepy giggles.</p>
+                        </div>
+                      </div>
+                    </div>
                   </div>
 
+                  <!-- Sensory Action -->
                   <button 
                     id="btn-demo-baby-chime" 
                     type="button" 
-                    class="mt-3 w-full py-2 px-3 rounded-xl bg-pink-100 hover:bg-pink-200 dark:bg-pink-900/40 dark:hover:bg-pink-800/60 text-pink-700 dark:text-pink-200 text-xs font-bold transition-all flex items-center justify-center gap-2 cursor-pointer shadow-xs active:scale-95"
+                    class="w-full py-3 px-4 rounded-2xl bg-gradient-to-r from-pink-500 to-rose-400 hover:from-pink-600 hover:to-rose-500 text-white font-display font-bold text-xs sm:text-sm shadow-md shadow-pink-500/20 hover:scale-[1.02] active:scale-95 transition-all flex items-center justify-center gap-2 cursor-pointer"
                   >
-                    <span>✨</span> <span>Hear Baby Sleep Chime (432 Hz)</span>
+                    <span>✨</span> <span>Play 432 Hz Crib Chime</span>
                   </button>
                 </div>
 
-                <!-- For Loving Parents -->
-                <div class="rounded-2xl p-5 bg-gradient-to-br from-amber-50/95 via-orange-50/80 to-white/95 dark:from-amber-950/60 dark:to-plum-950/50 border-2 border-amber-200/90 dark:border-amber-500/30 shadow-md hover:shadow-lg transition-all duration-300 flex flex-col justify-between">
+                <!-- Cradle 2: For Loving Caregivers (Parents) -->
+                <div class="sensory-cradle-parent p-6 flex flex-col justify-between transition-all duration-300">
                   <div>
-                    <div class="flex items-center justify-between gap-2 mb-3">
-                      <div class="flex items-center gap-2">
-                        <span class="text-2xl">🧑‍🍼</span>
-                        <h4 class="font-display font-bold text-base text-amber-900 dark:text-amber-300">For Loving Parents</h4>
+                    <!-- Card Header -->
+                    <div class="flex items-center justify-between gap-2 mb-4 pb-3 border-b border-amber-200/50 dark:border-amber-800/40">
+                      <div class="flex items-center gap-2.5">
+                        <span class="text-3xl">🧑‍🍼</span>
+                        <div>
+                          <h4 class="font-display font-black text-lg text-amber-950 dark:text-amber-300 leading-tight">In the Parent’s Arms</h4>
+                          <p class="text-[11px] font-medium text-amber-800/80 dark:text-amber-300/70">2:00 AM Midnight Relief</p>
+                        </div>
                       </div>
-                      <span class="px-2.5 py-0.5 rounded-full text-[10px] font-bold uppercase tracking-wider bg-amber-100 text-amber-800 dark:bg-amber-900/60 dark:text-amber-200">Midnight Relief</span>
+                      <span class="px-3 py-1 rounded-full text-[10px] font-black uppercase tracking-wider bg-amber-200/80 text-amber-900 dark:bg-amber-900 dark:text-amber-200 shadow-2xs">For Caregivers</span>
                     </div>
 
-                    <ul class="text-xs text-ink/80 dark:text-cream/80 space-y-2 mb-3 leading-relaxed">
-                      <li class="flex items-start gap-2">
-                        <span class="text-amber-600 flex-none font-bold">✓</span>
-                        <span><strong>Bilingual Lullaby Lyrics:</strong> Sing-along to classic Hindi & global rhymes with ease.</span>
-                      </li>
-                      <li class="flex items-start gap-2">
-                        <span class="text-amber-600 flex-none font-bold">✓</span>
-                        <span><strong>Calming White Noise:</strong> Skylight rain, crickets, and hearth breeze on demand.</span>
-                      </li>
-                      <li class="flex items-start gap-2">
-                        <span class="text-amber-600 flex-none font-bold">✓</span>
-                        <span><strong>Bedtime Storybooks:</strong> Ready-to-read illustrated tales for midnight pacing.</span>
-                      </li>
-                    </ul>
+                    <!-- Tactile Visual Items -->
+                    <div class="space-y-3 mb-5">
+                      <div class="sensory-toy-card">
+                        <span class="text-2xl p-2 rounded-xl bg-amber-100 dark:bg-amber-900/50 flex-none">🎶</span>
+                        <div>
+                          <h5 class="font-display font-bold text-xs text-amber-950 dark:text-amber-200">Sing-Along Lullabies</h5>
+                          <p class="text-[11px] text-ink/75 dark:text-cream/75 leading-tight mt-0.5">Bilingual lyrics for Chanda Mama & global classics when words fade.</p>
+                        </div>
+                      </div>
+
+                      <div class="sensory-toy-card">
+                        <span class="text-2xl p-2 rounded-xl bg-sky-100 dark:bg-sky-900/50 flex-none">🌧️</span>
+                        <div>
+                          <h5 class="font-display font-bold text-xs text-sky-950 dark:text-sky-200">Skylight White Noise</h5>
+                          <p class="text-[11px] text-ink/75 dark:text-cream/75 leading-tight mt-0.5">Soothing nursery rain and hearth crickets to mask outside sounds.</p>
+                        </div>
+                      </div>
+
+                      <div class="sensory-toy-card">
+                        <span class="text-2xl p-2 rounded-xl bg-purple-100 dark:bg-purple-900/50 flex-none">📖</span>
+                        <div>
+                          <h5 class="font-display font-bold text-xs text-purple-950 dark:text-purple-200">3-Minute Bedtime Tales</h5>
+                          <p class="text-[11px] text-ink/75 dark:text-cream/75 leading-tight mt-0.5">Ready-to-read illustrated stories when you are too tired to improvise.</p>
+                        </div>
+                      </div>
+                    </div>
                   </div>
 
+                  <!-- Sensory Action -->
                   <button 
                     id="btn-demo-parent-rain" 
                     type="button" 
-                    class="mt-3 w-full py-2 px-3 rounded-xl bg-amber-100 hover:bg-amber-200 dark:bg-amber-900/40 dark:hover:bg-amber-800/60 text-amber-800 dark:text-amber-200 text-xs font-bold transition-all flex items-center justify-center gap-2 cursor-pointer shadow-xs active:scale-95"
+                    class="w-full py-3 px-4 rounded-2xl bg-gradient-to-r from-amber-500 to-yellow-500 hover:from-amber-600 hover:to-yellow-600 text-white font-display font-bold text-xs sm:text-sm shadow-md shadow-amber-500/20 hover:scale-[1.02] active:scale-95 transition-all flex items-center justify-center gap-2 cursor-pointer"
                   >
-                    <span>🌧️</span> <span id="parent-rain-btn-label">Sample Calming Rain</span>
+                    <span>🌧️</span> <span id="parent-rain-btn-label">Start Calming Skylight Rain</span>
                   </button>
                 </div>
+
               </div>
 
-              <!-- Interactive Actions & Sleep Science Tag -->
-              <div class="flex flex-wrap items-center justify-between gap-3 pt-2">
-                <div class="flex flex-wrap items-center gap-3">
-                  <a href="#work" class="btn-berry px-6 py-2.5 rounded-full font-display font-bold text-xs sm:text-sm text-white shadow-lg shadow-pink-500/25 hover:scale-105 active:scale-95 transition-all inline-flex items-center gap-2">
-                    <span>🛠️</span> <span>Explore Pip’s 5 Bedtime Inventions</span>
+              <!-- Whimsical Nursery Footer Actions -->
+              <div class="flex flex-col sm:flex-row items-center justify-between gap-4 pt-5 border-t border-pink-200/40 dark:border-white/10">
+                <div class="flex flex-wrap items-center gap-3 w-full sm:w-auto">
+                  <a href="#work" class="flex-1 sm:flex-none justify-center px-6 py-3 rounded-full bg-berry hover:bg-berry/90 text-white font-display font-bold text-xs sm:text-sm shadow-lg shadow-pink-500/25 hover:scale-105 active:scale-95 transition-all inline-flex items-center gap-2">
+                    <span>🎠</span> <span>Explore Pip’s 5 Sleep Inventions</span>
                   </a>
 
                   <button 
                     id="about-stardust-btn" 
                     type="button" 
-                    class="px-4 py-2.5 rounded-full font-display font-bold text-xs sm:text-sm glass-panel border border-berry/30 dark:border-white/20 text-berry dark:text-moon hover:bg-berry/10 dark:hover:bg-white/10 shadow-xs hover:scale-105 active:scale-95 transition-all inline-flex items-center gap-2 cursor-pointer"
+                    class="flex-1 sm:flex-none justify-center px-5 py-3 rounded-full bg-white/90 dark:bg-black/40 border border-pink-300 dark:border-white/20 text-berry dark:text-moon font-display font-bold text-xs sm:text-sm shadow-sm hover:scale-105 active:scale-95 transition-all inline-flex items-center gap-2 cursor-pointer"
                   >
-                    <span>✨</span> <span>Sprinkle Dream Dust</span>
+                    <span>✨</span> <span>Sprinkle Baby Stardust</span>
                   </button>
                 </div>
 
-                <div class="text-[11px] font-semibold text-ink/60 dark:text-cream/60 flex items-center gap-2">
-                  <span>✦ 100% Free</span>
-                  <span>·</span>
-                  <span>No Ads</span>
-                  <span>·</span>
-                  <span>Pediatric Sleep Sound Science</span>
+                <!-- Pedagogy & Safety Seal -->
+                <div class="flex items-center gap-2 text-[11px] font-bold text-ink/60 dark:text-cream/60">
+                  <span class="w-2 h-2 rounded-full bg-emerald-400"></span>
+                  <span>Pediatric Sleep Sound Standards · 100% Free · Ad-Free Haven</span>
                 </div>
               </div>
 

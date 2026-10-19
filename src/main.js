@@ -512,7 +512,7 @@ function initInteractions() {
         window.speechSynthesis.cancel();
         isStoryNarrating = false;
         if (storyNarrateIcon) storyNarrateIcon.textContent = '🔊';
-        if (storyNarrateText) storyNarrateText.textContent = 'Read Story Aloud';
+        if (storyNarrateText) storyNarrateText.textContent = 'Listen to Bedtime Story';
         storyNarrateBtn.classList.remove('ring-2', 'ring-pink-500', 'animate-pulse');
         return;
       }
@@ -522,11 +522,11 @@ function initInteractions() {
       setTimeout(() => nurseryAudio.playBell(nurseryAudio.NOTES.E5, null, 0.85), 180);
 
       const storyText =
-        'Why Did Pip Build This Nursery? ' +
-        'One twilight in Somnia, Pip peered through his starlight telescope down at Earth. ' +
-        'In the quiet nurseries below, little babies were crying in the dark. The silence felt too loud, the shadows seemed scary, and exhausted parents were pacing the floor at two in the morning. ' +
-        'Pip hated silence and could not bear to see anyone cry. So he rolled up his nightgown sleeves and engineered this enchanted haven to turn bedtime into a peaceful, giggle-filled adventure for both babies and parents. ' +
-        'Pip reminds us: No baby should ever be afraid of the quiet, and no tired parent should have to walk the hallway alone!';
+        'Why Pip Built This Nursery. ' +
+        'One quiet twilight in Somnia, Pip peered through his starlight telescope down at Earth. ' +
+        'In the darkened nurseries below, little babies were crying softly in their cribs. The midnight silence felt too wide, the room shadows felt scary, and loving parents were pacing the floor at two in the morning with weary eyes. ' +
+        'Pip hated cold silence and could not bear to see anyone cry. So he rolled up his nightgown sleeves, gathered moonbeam wool, and engineered this enchanted haven: a comforting world designed specifically to calm restless little souls and give exhausted parents their breath back. ' +
+        'Pip whispers: Babies do not need loud silence, they need the gentle hum of safety. And parents walking the hallway at two AM deserve a magical friend to carry the melody!';
 
       const utterance = new SpeechSynthesisUtterance(storyText);
       utterance.pitch = 1.15;
@@ -546,14 +546,14 @@ function initInteractions() {
       utterance.onstart = () => {
         isStoryNarrating = true;
         if (storyNarrateIcon) storyNarrateIcon.textContent = '⏸️';
-        if (storyNarrateText) storyNarrateText.textContent = 'Pause Reading';
+        if (storyNarrateText) storyNarrateText.textContent = 'Pause Bedtime Story';
         storyNarrateBtn.classList.add('ring-2', 'ring-pink-500', 'animate-pulse');
       };
 
       utterance.onend = () => {
         isStoryNarrating = false;
         if (storyNarrateIcon) storyNarrateIcon.textContent = '🔊';
-        if (storyNarrateText) storyNarrateText.textContent = 'Read Story Aloud';
+        if (storyNarrateText) storyNarrateText.textContent = 'Listen to Bedtime Story';
         storyNarrateBtn.classList.remove('ring-2', 'ring-pink-500', 'animate-pulse');
         nurseryAudio.playPipGiggle();
       };
@@ -561,7 +561,7 @@ function initInteractions() {
       utterance.onerror = () => {
         isStoryNarrating = false;
         if (storyNarrateIcon) storyNarrateIcon.textContent = '🔊';
-        if (storyNarrateText) storyNarrateText.textContent = 'Read Story Aloud';
+        if (storyNarrateText) storyNarrateText.textContent = 'Listen to Bedtime Story';
         storyNarrateBtn.classList.remove('ring-2', 'ring-pink-500', 'animate-pulse');
       };
 
@@ -609,7 +609,7 @@ function initInteractions() {
       isParentRainPlaying = !isParentRainPlaying;
       nurseryAudio.toggleRain(isParentRainPlaying);
       if (parentRainLabel) {
-        parentRainLabel.textContent = isParentRainPlaying ? 'Stop Calming Rain 🌧️' : 'Sample Calming Rain';
+        parentRainLabel.textContent = isParentRainPlaying ? 'Stop Skylight Rain 🌧️' : 'Start Calming Skylight Rain';
       }
       parentRainBtn.classList.toggle('ring-2', isParentRainPlaying);
       parentRainBtn.classList.toggle('ring-amber-500', isParentRainPlaying);

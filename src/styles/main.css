@@ -1393,11 +1393,82 @@ body.midnight-mode #video-sky-overlay {
         color: #EDE0EA !important;
       }
 
-      /* Story Behind Nursery Card */
-      body.midnight-mode #story-behind-card {
-        background: rgba(24, 9, 32, 0.96) !important;
-        border-color: rgba(255, 117, 160, 0.35) !important;
-        box-shadow: 0 25px 60px rgba(0, 0, 0, 0.85), 0 0 40px rgba(255, 117, 160, 0.15) !important;
+      /* High-End Baby Nursery Storybook Styling */
+      .nursery-storybook-card {
+        border-radius: 2.5rem;
+        background: linear-gradient(175deg, rgba(255, 255, 255, 0.97) 0%, rgba(255, 251, 246, 0.95) 100%);
+        border: 2px solid rgba(255, 255, 255, 0.95);
+        box-shadow: 0 25px 60px -15px rgba(255, 117, 160, 0.18), 0 0 0 1px rgba(255, 182, 193, 0.25);
+        backdrop-filter: blur(28px);
+        position: relative;
+        overflow: hidden;
+      }
+
+      .nursery-drop-cap {
+        float: left;
+        font-size: 3.4rem;
+        line-height: 0.82;
+        font-family: 'Outfit', sans-serif;
+        font-weight: 900;
+        margin-right: 0.85rem;
+        margin-top: 0.2rem;
+        background: linear-gradient(135deg, #FF6584 0%, #B84D88 100%);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        filter: drop-shadow(0 2px 5px rgba(255, 101, 132, 0.25));
+      }
+
+      .sensory-cradle-baby {
+        background: linear-gradient(160deg, #FFF6F8 0%, #FFEBF1 50%, #FFF2F6 100%);
+        border: 2px solid rgba(255, 182, 193, 0.65);
+        border-radius: 2rem;
+        box-shadow: 0 12px 30px -8px rgba(255, 117, 160, 0.15);
+      }
+
+      .sensory-cradle-parent {
+        background: linear-gradient(160deg, #FFFDF2 0%, #FFF9E2 50%, #FFF6D5 100%);
+        border: 2px solid rgba(255, 225, 140, 0.8);
+        border-radius: 2rem;
+        box-shadow: 0 12px 30px -8px rgba(252, 200, 60, 0.18);
+      }
+
+      .sensory-toy-card {
+        display: flex;
+        align-items: center;
+        gap: 0.85rem;
+        padding: 0.8rem 0.95rem;
+        border-radius: 1.25rem;
+        background: rgba(255, 255, 255, 0.9);
+        border: 1px solid rgba(255, 255, 255, 0.95);
+        box-shadow: 0 4px 14px rgba(0, 0, 0, 0.04);
+        transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+      }
+
+      .sensory-toy-card:hover {
+        transform: translateY(-2px) scale(1.02);
+        box-shadow: 0 8px 22px rgba(255, 107, 153, 0.18);
+      }
+
+      .nursery-cloud-whisper {
+        border-radius: 1.75rem;
+        background: linear-gradient(135deg, rgba(255, 243, 248, 0.95), rgba(254, 249, 235, 0.95));
+        border: 2px dashed rgba(255, 155, 185, 0.5);
+        box-shadow: 0 8px 25px -6px rgba(255, 107, 153, 0.12);
+      }
+
+      /* Story Behind Nursery Card - Midnight Mode */
+      body.midnight-mode #story-behind-card,
+      body.midnight-mode .nursery-storybook-card {
+        background: linear-gradient(175deg, rgba(32, 13, 42, 0.98) 0%, rgba(20, 8, 28, 0.98) 100%) !important;
+        border-color: rgba(252, 225, 131, 0.35) !important;
+        box-shadow: 0 25px 60px rgba(0, 0, 0, 0.9), 0 0 40px rgba(255, 117, 160, 0.2) !important;
+      }
+
+      body.midnight-mode .nursery-drop-cap {
+        background: linear-gradient(135deg, #FCE183 0%, #FFB3C6 100%) !important;
+        -webkit-background-clip: text !important;
+        -webkit-text-fill-color: transparent !important;
+        filter: drop-shadow(0 2px 10px rgba(252, 225, 131, 0.45)) !important;
       }
 
       body.midnight-mode #story-behind-card h3 {
@@ -1409,62 +1480,43 @@ body.midnight-mode #video-sky-overlay {
       }
 
       body.midnight-mode #story-behind-card strong {
-        color: #FF75A0 !important;
-      }
-
-      body.midnight-mode #story-behind-card blockquote {
-        color: #FFFFFF !important;
-      }
-
-      body.midnight-mode #story-behind-card .border-l-4 {
-        background: rgba(45, 18, 58, 0.85) !important;
-        border-color: #FF75A0 !important;
-      }
-
-      body.midnight-mode #story-behind-card .grid>div:first-child {
-        background: linear-gradient(135deg, rgba(60, 15, 45, 0.95), rgba(35, 12, 38, 0.95)) !important;
-        border-color: rgba(255, 117, 160, 0.4) !important;
-      }
-
-      body.midnight-mode #story-behind-card .grid>div:last-child {
-        background: linear-gradient(135deg, rgba(55, 30, 15, 0.95), rgba(35, 12, 38, 0.95)) !important;
-        border-color: rgba(252, 225, 131, 0.4) !important;
-      }
-
-      body.midnight-mode #story-behind-card .grid h4 {
-        color: #FFFFFF !important;
-      }
-
-      body.midnight-mode #story-behind-card .grid ul,
-      body.midnight-mode #story-behind-card .grid li,
-      body.midnight-mode #story-behind-card .grid li span {
-        color: #EDE0EA !important;
-      }
-
-      body.midnight-mode #story-behind-card .grid strong {
-        color: #FCE183 !important;
-      }
-
-      body.midnight-mode #btn-demo-baby-chime {
-        background: rgba(255, 117, 160, 0.25) !important;
         color: #FFB3C6 !important;
-        border: 1px solid rgba(255, 117, 160, 0.4) !important;
       }
 
-      body.midnight-mode #btn-demo-baby-chime:hover {
-        background: #FF75A0 !important;
-        color: #FFFFFF !important;
+      body.midnight-mode .nursery-cloud-whisper {
+        background: linear-gradient(135deg, rgba(46, 17, 56, 0.95), rgba(35, 12, 42, 0.95)) !important;
+        border-color: rgba(252, 225, 131, 0.4) !important;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.55) !important;
       }
 
-      body.midnight-mode #btn-demo-parent-rain {
-        background: rgba(252, 225, 131, 0.2) !important;
+      body.midnight-mode .nursery-cloud-whisper p {
+        color: #FFE6EE !important;
+      }
+
+      body.midnight-mode .sensory-cradle-baby {
+        background: linear-gradient(160deg, rgba(58, 16, 44, 0.95) 0%, rgba(38, 12, 32, 0.95) 100%) !important;
+        border-color: rgba(255, 117, 160, 0.45) !important;
+        box-shadow: 0 15px 35px rgba(0, 0, 0, 0.6) !important;
+      }
+
+      body.midnight-mode .sensory-cradle-parent {
+        background: linear-gradient(160deg, rgba(56, 32, 12, 0.95) 0%, rgba(36, 18, 10, 0.95) 100%) !important;
+        border-color: rgba(252, 225, 131, 0.5) !important;
+        box-shadow: 0 15px 35px rgba(0, 0, 0, 0.6) !important;
+      }
+
+      body.midnight-mode .sensory-toy-card {
+        background: rgba(25, 8, 30, 0.88) !important;
+        border-color: rgba(255, 255, 255, 0.12) !important;
+        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.45) !important;
+      }
+
+      body.midnight-mode .sensory-toy-card h5 {
         color: #FCE183 !important;
-        border: 1px solid rgba(252, 225, 131, 0.4) !important;
       }
 
-      body.midnight-mode #btn-demo-parent-rain:hover {
-        background: #FCE183 !important;
-        color: #1A0A22 !important;
+      body.midnight-mode .sensory-toy-card p {
+        color: #EDE0EA !important;
       }
 
       /* Whispers & Guestbook */
